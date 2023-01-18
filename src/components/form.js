@@ -7,11 +7,20 @@ class Form extends Component {
         super(props)
 
         this.state = {
-            vehicleNumber: 'Enter your vehicle number'
+            vehicleNumber: ''
         }
 
 
     }
+
+    handleChallanChange = (event)=>{
+        console.log(event.target.value);
+        this.setState({
+            vehicleNumber: event.target.value
+        })
+
+    }
+
 
 
 render() {
@@ -21,7 +30,9 @@ render() {
                 <H1>E-challan Payment</H1>
 
 
-                <InputChallan type="text" value={this.state.vehicleNumber} />
+                <InputChallan type="text"  value={this.state.vehicleNumber} 
+                
+                                            onChange={this.handleChallanChange} />
 
                 <Label>
                     <div class="input-container">
