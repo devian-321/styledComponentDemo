@@ -1,6 +1,8 @@
 
 import './App.css';
 import {Button,FancyButton} from './components/button'
+import Form from './components/form'
+
 function App() {
   return (
     <div className="App">
@@ -13,7 +15,12 @@ function App() {
         <br />
       </div>
       <FancyButton as='a'>StyledButton</FancyButton>
+      <div><br /></div>
+      <Form>Form Component</Form>
+
     </div>
+    
+  
   );
 }
 
