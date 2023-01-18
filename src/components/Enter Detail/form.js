@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {H1,Label,InputChallan,Captcha,SubmitButton} from './Form.styles/form.styles'
+import {H1,Label,InputChallan,Captcha,SubmitButton} from './form.styles'
 
 
 class Form extends Component {
