@@ -1,7 +1,6 @@
 
 import './App.css';
-import {Button,FancyButton} from './components/button'
-import Form from './components/Enter Detail/form'
+import Form from './components/Enter Detail'
 
 function App() {
   return (
