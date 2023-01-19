@@ -1,5 +1,9 @@
 import React,{useState} from "react";
-import {Table,Column} from './styled.js';
+import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
+
+
+
+
     const data = [
         { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
         { challan_id: "anshuman", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
@@ -15,6 +19,19 @@ import {Table,Column} from './styled.js';
       function UnpaidChallan() {
         return (
           <div >
+
+          <div>
+            <VehicleNumberTag>
+              Vehicle Number:
+            </VehicleNumberTag>
+            <VehicleNumber>
+              KA01CA4214
+            </VehicleNumber>  
+          </div>
+          {/* <div>
+            <PendingChallan>You have 8 pending challans</PendingChallan>
+          </div> */}
+
             <Table>
               <tr style={{backgroundColor: '#D5D8DE'}}>
                 <th>Challan ID</th>

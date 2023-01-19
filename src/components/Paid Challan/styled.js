@@ -1,5 +1,78 @@
 import styled from 'styled-components'
 
+
+//vehicle Number tag
+export const VehicleNumberTag = styled.span`
+    position: absolute;
+    width: 171px;
+    height: 27px;
+    left: 557px;
+    top: 94px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+/* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+`;
+
+//vehicle Number
+export const VehicleNumber = styled.span`
+    position: absolute;
+    width: 141px;
+    height: 27px;
+    left: 741px;
+    top: 94px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+/* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+`;
+
+
+//PendingChallan
+
+export const PendingChallan = styled.span`
+        position: absolute;
+width: 141px;
+height: 27px;
+left: 741px;
+top: 94px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+line-height: 27px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+
+`;
+
+
+
+
+
+
+
+
+
+
 //Table
 export const Table = styled.table`
     box-sizing: border-box;
@@ -23,4 +96,4 @@ export const Column = styled.tr`
     background: #D5D8DE;
     border-radius: 4px;
 
-`
+`;
