@@ -10,8 +10,9 @@ function Form() {
     const handleChallanChange = (event) =>{
         setInputVehicle({[event.target.vehicleNumber]: event.target.value})
     }
-    const submition = ()=>{
-        alert(inputField.vehicleNumber)
+    const handleOnClick = (event)=>{
+
+        alert(event.target.vehicleNumber)
     }
     return(
                 <form>
@@ -33,7 +34,7 @@ function Form() {
                              </div>
                          </Label>
         
-                         <SubmitButton onClick={submition}>SUBMIT</SubmitButton>
+                         <SubmitButton onClick={handleOnClick}>SUBMIT</SubmitButton>
         
                      </div>
                  </form>
