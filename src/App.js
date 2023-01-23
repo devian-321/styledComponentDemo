@@ -1,11 +1,23 @@
 
 import './App.css';
-import Form from './components/Enter Detail'
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
+import Form from './components/Enter Detail';
+import PaidChallan from './components/Paid Challan';
+import UnpaidChallan from './components/Unpaid Challan';
+
 
 function App() {
   return (
     <div className="App">
-      <Form>Form Component</Form>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/' element={<Form />} />
+          <Route exact path='/paidChallan' element={<PaidChallan />} />
+          <Route exact path='/unpaidChallan' element={<UnpaidChallan />} />
+        </Routes>
+      </BrowserRouter>
+       {/* <Form>Form Component</Form>
+    <UnpaidChallan> unpaidChallan</UnpaidChallan> */}
     </div>
     
   

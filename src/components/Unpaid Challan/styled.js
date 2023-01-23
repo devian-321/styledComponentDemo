@@ -69,10 +69,6 @@ color: #000000;
 
 
 
-
-
-
-
 //Table
 export const Table = styled.table`
     box-sizing: border-box;
