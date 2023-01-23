@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import {H1,Label,InputChallan,Captcha,SubmitButton} from './form.styles'
+import { Link } from "react-router-dom";
 
 
 function Form() {
@@ -10,10 +11,17 @@ function Form() {
     const handleChallanChange = (event) =>{
         setInputVehicle({[event.target.vehicleNumber]: event.target.value})
     }
-    const handleOnClick = (event)=>{
 
-        alert(event.target.vehicleNumber)
-    }
+
+
+    //not working
+    // const handleOnClick = ()=>{
+    //     var vehicleNumber=inputField.vehicleNumber
+    //     alert(vehicleNumber)
+    // }
+
+
+
     return(
                 <form>
                      <div>
@@ -33,8 +41,11 @@ function Form() {
                                 
                              </div>
                          </Label>
-        
-                         <SubmitButton onClick={handleOnClick}>SUBMIT</SubmitButton>
+                         <Link to={"./PaidChallan"}>
+                         <SubmitButton>SUBMIT</SubmitButton>
+                         </Link>
+                       
+                         {/* <SubmitButton onClick={handleOnClick}>SUBMIT</SubmitButton> */}
         
                      </div>
                  </form>

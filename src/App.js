@@ -2,7 +2,9 @@
 import './App.css';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import Form from './components/Enter Detail';
-import UnpaidChallan from './components/Paid Challan';
+import PaidChallan from './components/Paid Challan';
+import UnpaidChallan from './components/Unpaid Challan';
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Form />} />
+          <Route exact path='/paidChallan' element={<PaidChallan />} />
           <Route exact path='/unpaidChallan' element={<UnpaidChallan />} />
         </Routes>
       </BrowserRouter>
