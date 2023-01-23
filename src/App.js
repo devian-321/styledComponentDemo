@@ -1,7 +1,7 @@
 
 import './App.css';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import Form from './components/Enter Detail';
+import Form from './components/Form';
 import PaidChallan from './components/Paid Challan';
 import UnpaidChallan from './components/Unpaid Challan';
 
