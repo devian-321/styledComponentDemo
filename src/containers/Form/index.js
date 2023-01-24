@@ -1,24 +1,43 @@
 import React,{useState} from "react";
 import {H1,Label,InputChallan,Captcha,SubmitButton} from './form.styles'
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 
+
+
+
+// var checker = document.getElementById('checkme');
+//     var sendbtn = document.getElementById('submitButtom');
+//     checker.handleOnClick = function(){
+//     if(this.checked){
+//         sendbtn.disabled = false;
+//         } else {
+//     sendbtn.disabled = true;
+//     alert("Click the checkbox");
+//     }
+
+//     }
 
 function Form() {
+   
     const [inputField,setInputVehicle]=useState({
-        vehicleNumber: ''
+        vehicleNumber:' '
     })
 
-    const handleChallanChange = (event) =>{
-        setInputVehicle({[event.target.vehicleNumber]: event.target.value})
+    const handleChallanChange = (e) =>{
+        setInputVehicle({ [e.target.name]: e.target.value })
+        console.log(e.target.name);
     }
 
 
 
-    //not working
-    // const handleOnClick = ()=>{
-    //     var vehicleNumber=inputField.vehicleNumber
-    //     alert(vehicleNumber)
-    // }
+    const handleOnClick = (e)=>{
+        e.preventDefault();
+       console.log(inputField)
+        
+    }
+
+
+    
 
 
 
@@ -35,17 +54,17 @@ function Form() {
         
                          <Label>
                              <div class="input-container">
-                                 <input type="checkbox" class="checkbox" id="check" />
+                                 <input type="checkbox" class="checkbox" id="checkme" />
         
                                  <span class="checkbox-text">I'm not a robot</span>
                                 
                              </div>
                          </Label>
-                         <Link to={"./PaidChallan"}>
-                         <SubmitButton>SUBMIT</SubmitButton>
-                         </Link>
+                         {/* <Link to={"./PaidChallan"}>
+                         <SubmitButton >SUBMIT</SubmitButton>
+                         </Link> */}
                        
-                         {/* <SubmitButton onClick={handleOnClick}>SUBMIT</SubmitButton> */}
+                         <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton>
         
                      </div>
                  </form>

@@ -1,23 +1,39 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
-import Header from "../Header/index.js";
+import Header from "./components/Header/index.js";
+import axios from "axios";
 
 
 
 
-    const data = [
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "anshuman", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-        { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+
+
+
+    // const data = [
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "anshuman", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
+    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
 
        
-      ]
+    //   ]
         
       function PaidChallan() {
+        
+        const [vehicleData,setVehicleData] = useState([]);
+
+        useEffect (()=>{
+          axios
+              .get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
+              .then((res)=>{
+                setVehicleData(res.data);
+              })
+        },[]);
+
+
         return (
           <div >
 
@@ -46,14 +62,14 @@ import Header from "../Header/index.js";
                 <th>Reciept</th>
                 <th>Evidence</th>
               </tr>
-              {data.map((val, key) => {
+              {vehicleData.map((val, key) => {
                 return (
                   <tr key={key}>
-                    <td>{val.challan_id}</td>
-                    <td>{val.date}</td>
-                    <td>{val.city}</td>
-                    <td>{val.area}</td>
-                    <td>{val.licenceNumber}</td>
+                    <td>{val.violationId}</td>
+                    <td>{val.violationDate.slice(0,10)}</td>
+                    <td>{val.cityName}</td>
+                    <td>{val.regionName}</td>
+                    <td>{val.licensePlateNumber}</td>
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
                     <td>{val.reciept}</td>

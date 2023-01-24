@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
-import Header from "../Header/index.js";
+import Header from "../Paid Challan/components/Header/index.js";
 
 
 
