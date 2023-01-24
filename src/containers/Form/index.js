@@ -19,13 +19,10 @@ import { Link,useParams } from "react-router-dom";
 
 function Form() {
    
-    const [inputField,setInputVehicle]=useState({
-        vehicleNumber:' '
-    })
+   const [inputField,setInputVehicle] = useState("");
 
     const handleChallanChange = (e) =>{
-        setInputVehicle({ [e.target.name]: e.target.value })
-        console.log(e.target.name);
+        setInputVehicle(e.target.value);
     }
 
 
@@ -49,7 +46,7 @@ function Form() {
         
                          <InputChallan type="text" 
                                         placeholder="Enter your Challan Number/Vehicle Nmber"
-                                        value={inputField.vehicleNumber} 
+                                        value={inputField} 
                                          onChange={handleChallanChange} />
         
                          <Label>
@@ -64,7 +61,7 @@ function Form() {
                          <SubmitButton >SUBMIT</SubmitButton>
                          </Link> */}
                        
-                         <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton>
+                         {/* <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton> */}
         
                      </div>
                  </form>
