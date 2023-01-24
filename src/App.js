@@ -1,9 +1,9 @@
 
 import './App.css';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import Form from './components/Form';
-import PaidChallan from './components/Paid Challan';
-import UnpaidChallan from './components/Unpaid Challan';
+import Form from './containers/Form';
+import PaidChallan from './containers/Paid Challan';
+import UnpaidChallan from './containers/Unpaid Challan';
 
 
 function App() {

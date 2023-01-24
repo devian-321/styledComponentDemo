@@ -3,7 +3,7 @@
 import styled,{css} from 'styled-components'
 
 
-export const H1=styled.h1`
+export const H1=styled.h2`
  position: absolute;
 width: 217px;
 height: 29px;
@@ -96,6 +96,7 @@ top: 626px;
 
 background: #1D2D4E;
 border-radius: 2px;
+color: #FFFF;
 
 
 `;
