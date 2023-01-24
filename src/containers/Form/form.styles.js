@@ -100,3 +100,26 @@ color: #FFFF;
 
 
 `;
+
+// radio buttons
+
+//  export const RadioChallan = styled(InputChallan)`
+//     position: absolute;
+//     width: 98px;
+//     height: 16px;
+//     left: 462px;
+//     top: 414px;
+
+//     font-family: 'Inter';
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 13px;
+//     line-height: 16px;
+// /* identical to box height */
+
+//     display: flex;
+//     align-items: center;
+
+//     color: #6B6B6B;
+
+// `

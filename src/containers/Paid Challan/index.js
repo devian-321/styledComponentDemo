@@ -22,7 +22,6 @@ import axios from "axios";
     //   ]
         
       function PaidChallan() {
-        
         const [vehicleData,setVehicleData] = useState([]);
 
         useEffect (()=>{
