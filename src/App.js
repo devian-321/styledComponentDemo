@@ -14,6 +14,7 @@ function App() {
           <Route exact path='/' element={<Form />} />
           <Route exact path='/paidChallan' element={<PaidChallan />} />
           <Route exact path='/unpaidChallan' element={<UnpaidChallan />} />
+          <Route default path='/' />
         </Routes>
       </BrowserRouter>
        {/* <Form>Form Component</Form>
