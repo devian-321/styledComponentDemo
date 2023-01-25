@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import {H1,Label,InputChallan,Captcha,SubmitButton} from './form.styles'
+import React,{useEffect, useState} from "react";
+import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput} from './form.styles'
 import { Link,useParams } from "react-router-dom";
 
 
@@ -21,7 +21,7 @@ function Form() {
         // console.log(e.target.value);
        let radioStatus = e.target.value;
        setRadioChoice(e.target.value);
-        console.log(radioChoice);
+        // console.log(radioChoice);
        if(radioStatus =="challanNumber"){
         console.log("it is challan number");
        }
@@ -57,8 +57,9 @@ function Form() {
        
 
     }
-    
-
+    useEffect(()=>{
+        console.log(radioChoice);
+    },[radioChoice])
 
 
     return(

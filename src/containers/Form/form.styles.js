@@ -103,23 +103,15 @@ color: #FFFF;
 
 // radio buttons
 
-//  export const RadioChallan = styled(InputChallan)`
-//     position: absolute;
-//     width: 98px;
-//     height: 16px;
-//     left: 462px;
-//     top: 414px;
+ export const RadioChallanInput = styled.input`
+    box-sizing: border-box;
 
-//     font-family: 'Inter';
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 13px;
-//     line-height: 16px;
-// /* identical to box height */
+position: absolute;
+width: 19px;
+height: 19px;
+left: 433px;
+top: 411px;
 
-//     display: flex;
-//     align-items: center;
+border: 1px solid #B5B5B5;
 
-//     color: #6B6B6B;
-
-// `
+`
