@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput} from './form.styles'
+import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput,RadioChoice} from './form.styles'
 import { Link,useParams } from "react-router-dom";
 
 
@@ -28,23 +28,14 @@ function Form() {
        else {
         console.log("it is vehicle Number");
        }
-        
-
     }
+    useEffect(()=>{
+        console.log(radioChoice);
+    },[radioChoice])
 
-    // const enableButton = (e)=>{
 
-    //     // var checker = document.getElementById('checkme');
-    //     // var sendbtn = document.getElementById('submitButtom');
-    //     // checker.CheckForCaptcha = ()=>{
-    //     // if(this.checked){
-    //     // sendbtn.removeAttribute("disabled");
-    //     // } else {
-    //     // alert("Click the checkbox");
-    //     // }
 
-    // // }
-    // }
+
 
     const handleSubmit = (e)=>{
          e.preventDefault();
@@ -57,9 +48,7 @@ function Form() {
        
 
     }
-    useEffect(()=>{
-        console.log(radioChoice);
-    },[radioChoice])
+   
 
 
     return(
@@ -73,7 +62,7 @@ function Form() {
 
                          {/*  radio Button */}
 
-                         <div>
+                         <RadioChoice>
                             <label for="challanNumber">ChallanNumber</label>
                             <input type="radio" 
                                     id="challanNumber" 
@@ -91,12 +80,12 @@ function Form() {
                                     onChange={handleRadioChoice}  
                                     checked={radioChoice=="vehicleNumber"}> 
                             </input>
-                        </div>
+                        </RadioChoice>
         
                         {/*  Challan/VehicleNumber */}
 
                          <InputChallan type="text" 
-                                        placeholder="Enter your Challan Number/Vehicle Number"
+                                        placeholder="Enter your Challan ID/Vehicle Number"
                                         value={inputField} 
                                          onChange={handleChallanChange} />
 
@@ -104,7 +93,7 @@ function Form() {
                         {/* CheckBox */}
 
                          <Label>
-                             <div class="input-container">
+                             <div >
                                  <input type="checkbox"
                                          class="checkbox" 
                                          id="checkme" 
@@ -127,7 +116,7 @@ function Form() {
                        
                          {/* <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton> */}
         
-                     </div>
+                         </div>
                  </form>
     )}
 

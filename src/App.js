@@ -5,6 +5,11 @@ import Form from './containers/Form';
 import PaidChallan from './containers/Paid Challan';
 import UnpaidChallan from './containers/Unpaid Challan';
 
+import "./fonts/Inter/Inter-SemiBold.ttf";
+import "./fonts/Inter/Inter-Regular.ttf";
+
+
+
 
 
 {/* <Route path="users">
