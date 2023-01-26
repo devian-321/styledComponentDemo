@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
 import Header from "./components/Header/index.js";
 import axios from "axios";
@@ -21,14 +22,18 @@ import axios from "axios";
        
     //   ]
         
-      function PaidChallan() {
+      function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
+        const {id} = useParams();
+        console.log(id);
 
         useEffect (()=>{
           axios
               .get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
               .then((res)=>{
                 setVehicleData(res.data);
+              }).catch((error)=>{
+                console.log(error);
               })
         },[]);
 
@@ -41,7 +46,7 @@ import axios from "axios";
               Vehicle Number:
             </VehicleNumberTag>
             <VehicleNumber>
-              KA01CA4214
+              {id}
             </VehicleNumber>  
           </div>
           <Header></Header>
@@ -81,4 +86,4 @@ import axios from "axios";
         );
       }
         
-      export default PaidChallan;
+      export default Challan;

@@ -2,7 +2,7 @@
 import './App.css';
 import { BrowserRouter,Route,Routes,useParams } from 'react-router-dom';
 import Form from './containers/Form';
-import PaidChallan from './containers/Paid Challan';
+import Challan from './containers/Challan';
 import UnpaidChallan from './containers/Unpaid Challan';
 
 import "./fonts/Inter/Inter-SemiBold.ttf";
@@ -25,7 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Form />} />
-          <Route exact path='/paidChallan' element={<PaidChallan />} ></Route>
+          <Route exact path='/Challan/:id' element={<Challan />} ></Route>
           <Route exact path='/unpaidChallan' element={<UnpaidChallan />} />
           <Route default path='/' />
         </Routes>

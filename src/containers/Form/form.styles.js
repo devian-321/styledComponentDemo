@@ -114,3 +114,22 @@ position: absolute;
 height: 16px   !important;
 
 `
+export const EmptyForm = styled.p`
+    position: absolute;
+width: 217px;
+height: 29px;
+left: 596px;
+top: 521px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 2px;
+line-height: 29px;
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+`

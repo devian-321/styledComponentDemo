@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
-import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput,RadioChoice} from './form.styles'
-import { Link,useParams } from "react-router-dom";
+import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput,RadioChoice,EmptyForm} from './form.styles'
+import { Link} from "react-router-dom";
 
 
 
@@ -10,49 +10,82 @@ function Form() {
    const [inputField,setInputVehicle] = useState("");
    const [checkboxVerification ,setCheckbox]= useState(false);
    const [radioChoice,setRadioChoice] = useState("vehicleNumber");
+//    const [formError,setFormError] = useState("");
+//    const[isValidSubmit,setValidSubmit] = useState(false);
 
-    const handleChallanChange = (e) =>{
+
+    const handleOnChange = (e) =>{
         setInputVehicle(e.target.value); //for the input Challan number.
     }
 
 
-    const handleRadioChoice = (e)=>{       // it can differenciate between challan and vehicle number so far.
-                                            // With default as vehicle Number. 
+
+    const handleRadioChoice = (e)=>{  
+       
+        let radioStatus = e.target.value;                        
         // console.log(e.target.value);
-       let radioStatus = e.target.value;
        setRadioChoice(e.target.value);
         // console.log(radioChoice);
        if(radioStatus =="challanNumber"){
+
+          document.getElementById('enterDetail').placeholder='Enter your Challan ID';
         console.log("it is challan number");
        }
        else {
         console.log("it is vehicle Number");
+         document.getElementById('enterDetail').placeholder='Enter your Vehicle Number';
        }
     }
+   
     useEffect(()=>{
         console.log(radioChoice);
     },[radioChoice])
+
+
+    /////////////
 
 
 
 
 
     const handleSubmit = (e)=>{
-         e.preventDefault();
+         //   e.preventDefault();
         //  console.log(inputField);
          if(!checkboxVerification){
-            alert("you haven't checked the box");   /// if checkbox is not checked.
+            alert("you haven't checked the box"); 
+             e.preventDefault();  /// if checkbox is not checked.
          }else {
             console.log(inputField); /// when the check box is checked.
          }
+        
        
 
     }
+
+    // useEffect(()=>{
+    //     console.log(formError);
+    //     if(Object.keys(formError).length === 0 ){
+    //         console.log(inputField);
+    //     }
+    // },[formError])
+
+
+
+
+    // const validation = (val)=> {
+    //     let errors= "";
+    //     let regex = /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i;
+    //     if(!val){
+    //         errors = "Please enter your Details";
+    //     }
+    //     return errors;
+
+    // }
    
 
 
     return(
-                <form >
+                <form  >
                      <div>
 
                         {/*  E-challan payment header */}
@@ -85,9 +118,10 @@ function Form() {
                         {/*  Challan/VehicleNumber */}
 
                          <InputChallan type="text" 
-                                        placeholder="Enter your Challan ID/Vehicle Number"
+                                        id="enterDetail"
+                                        placeholder="Enter your Vehicle Number"
                                         value={inputField} 
-                                         onChange={handleChallanChange} />
+                                         onChange={handleOnChange} />
 
                        
                         {/* CheckBox */}
@@ -106,10 +140,10 @@ function Form() {
 
                          {/* SubmitButton */}
 
-                         <Link to={"./PaidChallan"}>
+                         <Link to={`./Challan/${inputField}`}>
                          <SubmitButton 
                             type="submit" 
-                            onClick={handleSubmit} 
+                             onClick={handleSubmit} 
                             id="submitButton" > SUBMIT
                          </SubmitButton>
                          </Link>
