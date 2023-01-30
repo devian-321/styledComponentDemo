@@ -10,11 +10,12 @@ function Form() {
    const [inputField,setInputVehicle] = useState("");
    const [checkboxVerification ,setCheckbox]= useState(false);
    const [radioChoice,setRadioChoice] = useState("vehicleNumber");
-//    const [formError,setFormError] = useState("");
+   const [formError,setFormError] = useState("");
 //    const[isValidSubmit,setValidSubmit] = useState(false);
 
 
     const handleOnChange = (e) =>{
+         setFormError("");
         setInputVehicle(e.target.value); //for the input Challan number.
     }
 
@@ -49,8 +50,9 @@ function Form() {
 
 
     const handleSubmit = (e)=>{
-         //   e.preventDefault();
+            // e.preventDefault();
         //  console.log(inputField);
+        setFormError(validation(inputField));
          if(!checkboxVerification){
             alert("you haven't checked the box"); 
              e.preventDefault();  /// if checkbox is not checked.
@@ -62,25 +64,25 @@ function Form() {
 
     }
 
-    // useEffect(()=>{
-    //     console.log(formError);
-    //     if(Object.keys(formError).length === 0 ){
-    //         console.log(inputField);
-    //     }
-    // },[formError])
+    useEffect(()=>{
+        console.log(formError);
+        if(Object.keys(formError).length === 0 ){
+            console.log(inputField);
+        }
+    },[formError])
 
 
 
 
-    // const validation = (val)=> {
-    //     let errors= "";
-    //     let regex = /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i;
-    //     if(!val){
-    //         errors = "Please enter your Details";
-    //     }
-    //     return errors;
+    const validation = (val)=> {
+        let errors= "";
+        let regex = /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i;
+        if(!val){
+            errors = "Please enter your Details";
+        }
+        return errors;
 
-    // }
+    }
    
 
 
@@ -96,16 +98,7 @@ function Form() {
                          {/*  radio Button */}
 
                          <RadioChoice>
-                            <label for="challanNumber">ChallanNumber</label>
-                            <input type="radio" 
-                                    id="challanNumber" 
-                                    name="radioChoice" 
-                                    value="challanNumber" 
-                                    onChange={handleRadioChoice} 
-                                    checked={radioChoice == "challanNumber"}> 
-                            </input>
-    
-                            <label for="vehicleNumber">vehicleNumber</label>
+                            
                             <input type="radio" 
                                     id="vehicleNumber" 
                                     name="radioChoice" 
@@ -113,6 +106,17 @@ function Form() {
                                     onChange={handleRadioChoice}  
                                     checked={radioChoice=="vehicleNumber"}> 
                             </input>
+                            <label for="vehicleNumber">VehicleNumber</label>
+
+
+                            <input type="radio" 
+                                    id="challanNumber" 
+                                    name="radioChoice" 
+                                    value="challanNumber" 
+                                    onChange={handleRadioChoice} 
+                                    checked={radioChoice == "challanNumber"}> 
+                            </input>
+                            <label  for="challanNumber">ChallanNumber</label>
                         </RadioChoice>
         
                         {/*  Challan/VehicleNumber */}
@@ -122,6 +126,8 @@ function Form() {
                                         placeholder="Enter your Vehicle Number"
                                         value={inputField} 
                                          onChange={handleOnChange} />
+
+                        <EmptyForm>{formError}</EmptyForm>
 
                        
                         {/* CheckBox */}

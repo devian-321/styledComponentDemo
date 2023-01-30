@@ -109,9 +109,14 @@ color: white;
 // radio buttons
 
  export const RadioChoice = styled.div`
+
    
 position: absolute;
-height: 16px   !important;
+height: 16px ;
+left: 480px;
+top: 414px;
+padding-left: 50px;
+
 
 `
 export const EmptyForm = styled.p`
@@ -119,17 +124,40 @@ export const EmptyForm = styled.p`
 width: 217px;
 height: 29px;
 left: 596px;
-top: 521px;
+top: 500px;
 
 font-family: 'Inter';
 font-style: normal;
 font-weight: 600;
-font-size: 2px;
+font-size: 13px;
 line-height: 29px;
 
 display: flex;
 align-items: center;
 text-align: center;
 
-color: #000000;
+color: red;
+`
+
+
+export const ChallanChoice = styled.section`
+position: absolute;
+width: 63px;
+height: 16px;
+left: 681px;
+top: 414px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 16px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #6B6B6B;
+
+
 `
