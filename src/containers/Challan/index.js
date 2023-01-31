@@ -25,6 +25,7 @@ import axios from "axios";
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
         const {choice,id} = useParams();
+        const [loader,setLoader]=useState(true);
         console.log(id);
 
         useEffect (()=>{
@@ -32,12 +33,15 @@ import axios from "axios";
               .get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
               .then((res)=>{
                 setVehicleData(res.data);
+                setLoader(false);
               }).catch((error)=>{
                 console.log(error);
               })
         },[]);
 
-
+        if(loader){
+          return(<div>loading....</div>)
+        }
         return (
           <div >
 

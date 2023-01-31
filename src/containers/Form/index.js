@@ -115,7 +115,7 @@ function Form() {
                                 onChange={handleRadioChoice}  
                                 checked={radioChoice=="vehicleNumber"}> 
                            </input>
-                           <label for="vehicleNumber">VehicleNumber</label>
+                           <label for="vehicleNumber">Vehicle Number</label>
                         </VehicleNumberRadio>
 
 
@@ -127,7 +127,7 @@ function Form() {
                                 onChange={handleRadioChoice} 
                                 checked={radioChoice == "challanNumber"}> 
                            </input>
-                           <label  for="challanNumber">ChallanNumber</label>
+                           <label  for="challanNumber">Challan ID</label>
                         </ChallanNumberRadio>
                     </RadioContainer>
     

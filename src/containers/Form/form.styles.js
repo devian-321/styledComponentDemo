@@ -192,8 +192,8 @@ color: white;
    
 position: relative;
 display: flex;
-align-items: center;
-padding-left: 50px;
+align-items: flex-start;
+width: 543px;
 margin-top: 50px;
 font-weight: 400;
 font-size: 13px;
