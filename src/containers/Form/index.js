@@ -1,6 +1,22 @@
 import React,{useEffect, useState} from "react";
-import {H1,Label,InputChallan,Captcha,SubmitButton,RadioChallanInput,RadioChoice,EmptyForm} from './form.styles'
+import {MainContainer,
+         Container,
+         HeadingContainer,
+         FormContainer,
+         CheckBoxContainer,
+         InputChallan,
+         SubmitButton,
+         RadioContainer,
+         EmptyForm,
+         VehicleNumberRadio,
+         ChallanNumberRadio,
+         InputContainer,
+         CheckBoxInput,
+         Captcha,
+         SubmitContainer} from './form.styles'
 import { Link} from "react-router-dom";
+// import { VehicleNumber } from "../Challan/styled";
+// import Challan from "../Challan";
 
 
 
@@ -57,11 +73,10 @@ function Form() {
             alert("you haven't checked the box"); 
              e.preventDefault();  /// if checkbox is not checked.
          }else {
+            
             console.log(inputField); /// when the check box is checked.
          }
-        
-       
-
+         
     }
 
     useEffect(()=>{
@@ -87,77 +102,82 @@ function Form() {
 
 
     return(
-                <form  >
-                     <div>
+                <MainContainer>
+                <Container>
+                <HeadingContainer>E-challan Payment</HeadingContainer>
+                <FormContainer>    
+                     <RadioContainer>                       
+                        <VehicleNumberRadio>
+                           <input type="radio" 
+                                id="vehicleNumber" 
+                                name="radioChoice" 
+                                value="vehicleNumber" 
+                                onChange={handleRadioChoice}  
+                                checked={radioChoice=="vehicleNumber"}> 
+                           </input>
+                           <label for="vehicleNumber">VehicleNumber</label>
+                        </VehicleNumberRadio>
 
-                        {/*  E-challan payment header */}
 
-                         <H1>E-challan Payment</H1>
+                        <ChallanNumberRadio>
+                           <input type="radio" 
+                                id="challanNumber" 
+                                name="radioChoice" 
+                                value="challanNumber" 
+                                onChange={handleRadioChoice} 
+                                checked={radioChoice == "challanNumber"}> 
+                           </input>
+                           <label  for="challanNumber">ChallanNumber</label>
+                        </ChallanNumberRadio>
+                    </RadioContainer>
+    
+                    {/*  Challan/VehicleNumber */}
 
+                     <InputContainer>
+                     <InputChallan type="text" 
+                                    id="enterDetail"
+                                    placeholder="Enter your Vehicle Number"
+                                    value={inputField} 
+                                     onChange={handleOnChange} />
+                     <EmptyForm>{formError}</EmptyForm>
+                     </InputContainer>
 
-                         {/*  radio Button */}
+                    
 
-                         <RadioChoice>
+                   
+                    {/* CheckBox */}
+
+                     <CheckBoxContainer>
+                         
+                             <CheckBoxInput type="checkbox"
+                                     class="checkbox" 
+                                     id="checkme" 
+                                     onClick= {(e)=>setCheckbox(e.target.checked)} />
+    
+                             <Captcha class="checkbox-text">I'm not a robot</Captcha>
                             
-                            <input type="radio" 
-                                    id="vehicleNumber" 
-                                    name="radioChoice" 
-                                    value="vehicleNumber" 
-                                    onChange={handleRadioChoice}  
-                                    checked={radioChoice=="vehicleNumber"}> 
-                            </input>
-                            <label for="vehicleNumber">VehicleNumber</label>
+                         
+                     </CheckBoxContainer>
 
+                     {/* SubmitButton */}
 
-                            <input type="radio" 
-                                    id="challanNumber" 
-                                    name="radioChoice" 
-                                    value="challanNumber" 
-                                    onChange={handleRadioChoice} 
-                                    checked={radioChoice == "challanNumber"}> 
-                            </input>
-                            <label  for="challanNumber">ChallanNumber</label>
-                        </RadioChoice>
-        
-                        {/*  Challan/VehicleNumber */}
-
-                         <InputChallan type="text" 
-                                        id="enterDetail"
-                                        placeholder="Enter your Vehicle Number"
-                                        value={inputField} 
-                                         onChange={handleOnChange} />
-
-                        <EmptyForm>{formError}</EmptyForm>
-
-                       
-                        {/* CheckBox */}
-
-                         <Label>
-                             <div >
-                                 <input type="checkbox"
-                                         class="checkbox" 
-                                         id="checkme" 
-                                         onClick= {(e)=>setCheckbox(e.target.checked)} />
-        
-                                 <span class="checkbox-text">I'm not a robot</span>
-                                
-                             </div>
-                         </Label>
-
-                         {/* SubmitButton */}
-
-                         <Link to={`./Challan/${inputField}`}>
-                         <SubmitButton 
-                            type="submit" 
-                             onClick={handleSubmit} 
-                            id="submitButton" > SUBMIT
-                         </SubmitButton>
-                         </Link>
-                       
-                         {/* <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton> */}
-        
-                         </div>
-                 </form>
+                    {/* <SubmitContainer> */}
+                           <Link to={`./Challan/${radioChoice}/${inputField}`}>
+                              <SubmitButton 
+                                 type="submit" 
+                                 onClick={handleSubmit} 
+                                 id="submitButton" > SUBMIT
+                              </SubmitButton>
+                           </Link>
+                    {/* </SubmitContainer> */}
+                   
+                     {/* <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton> */}
+    
+                    
+             </FormContainer>
+                </Container>
+                     
+                </MainContainer>
     )}
 
 export default Form;

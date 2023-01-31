@@ -24,7 +24,7 @@ import axios from "axios";
         
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
-        const {id} = useParams();
+        const {choice,id} = useParams();
         console.log(id);
 
         useEffect (()=>{
