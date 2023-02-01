@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
-import Header from "../Header/index.js";
+import Header from "../Challan/components/Header/index.js";
 
 
 
@@ -17,7 +17,7 @@ import Header from "../Header/index.js";
        
       ]
         
-      function PaidChallan() {
+      function UnpaidChallan() {
         return (
           <div >
 
@@ -26,9 +26,10 @@ import Header from "../Header/index.js";
               Vehicle Number:
             </VehicleNumberTag>
             <VehicleNumber>
-              KA01CA4214
+              RJCA4214
             </VehicleNumber>  
           </div>
+
           <Header></Header>
           {/* <div>
             <PendingChallan>You have 8 pending challans</PendingChallan>
@@ -66,4 +67,4 @@ import Header from "../Header/index.js";
         );
       }
         
-      export default PaidChallan;
+      export default UnpaidChallan;
