@@ -1,18 +1,30 @@
 import styled from 'styled-components'
 
+export const MainContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+export const HeadTag = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+`
 
 //vehicle Number tag
 export const VehicleNumberTag = styled.span`
-    position: absolute;
-    width: 171px;
+    position: relative;
+    width: 200px;
     height: 27px;
-    left: 557px;
-    top: 94px;
-    font-family: 'Inter';
+    /* left: 557px;
+    top: 94px; */
+    font-family: 'InterExtraLight';
     font-style: normal;
     font-weight: 400;
     font-size: 22px;
-    line-height: 27px;
+    /* line-height: 27px; */
 /* identical to box height */
     display: flex;
     align-items: center;
@@ -21,14 +33,14 @@ export const VehicleNumberTag = styled.span`
 
 //vehicle Number
 export const VehicleNumber = styled.span`
-    position: absolute;
-    width: 141px;
+    position: relative;
+    width: 150px;
     height: 27px;
-    left: 741px;
-    top: 94px;
+    /* left: 741px;
+    top: 94px; */
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 22px;
     line-height: 27px;
 /* identical to box height */
@@ -41,26 +53,27 @@ export const VehicleNumber = styled.span`
 `;
 
 
+
+
 //PendingChallan
 
-export const PendingChallan = styled.span`
-        position: absolute;
-width: 141px;
+export const PendingChallan = styled.div`
+        position: relative;
+width: 800px;
 height: 27px;
-left: 741px;
-top: 94px;
+margin-top: 30px;
 
-font-family: 'Inter';
+font-family: 'InterExtraLight';
 font-style: normal;
 font-weight: 600;
-font-size: 22px;
+font-size: 14px;
 line-height: 27px;
 /* identical to box height */
 
 display: flex;
 align-items: center;
 
-color: #000000;
+color: red;
 
 `;
 

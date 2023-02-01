@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan} from './styled.js';
+import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer} from './styled.js';
 import Header from "./components/Header/index.js";
 import axios from "axios";
 
@@ -42,17 +42,23 @@ import axios from "axios";
         if(loader){
           return(<div>loading....</div>)
         }
-        return (
-          <div >
 
-          <div>
+
+        
+        return (
+          <MainContainer >
+
+          <HeadTag>
             <VehicleNumberTag>
               Vehicle Number:
             </VehicleNumberTag>
             <VehicleNumber>
               {id}
             </VehicleNumber>  
-          </div>
+          </HeadTag>
+          <PendingChallan>
+         <p> You have 8 pending challans</p>
+          </PendingChallan>
           <Header></Header>
           {/* <div>
             <PendingChallan>You have 8 pending challans</PendingChallan>
@@ -86,7 +92,7 @@ import axios from "axios";
                 )
               })}
             </Table>
-          </div>
+          </MainContainer>
         );
       }
         
