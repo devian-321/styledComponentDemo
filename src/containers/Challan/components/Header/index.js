@@ -1,18 +1,25 @@
 import { NavLink } from "react-router-dom";
-import {LiU,LiP } from "./styled";
+import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton} from "./styled";
 
 
 const Header = ()=>{
     return(
-        <header>
+        <HeadContainer>
+            <HeadSubContainer>
             <nav>
-                <ul>
+                <Ul>
                     
                     <LiU><NavLink to={"/unpaidChallan"}>UnpaidChallan</NavLink></LiU>
                     <LiP><NavLink to = {"/paidChallan"}>PaidChallan</NavLink></LiP>
-                </ul>
+                </Ul>
             </nav>
-        </header>
+            </HeadSubContainer>
+            <PayButton>
+                pay 4200
+            </PayButton>
+            
+        
+        </HeadContainer>
     );
 }
 export default Header;

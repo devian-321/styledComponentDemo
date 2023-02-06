@@ -1,32 +1,25 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer} from './styled.js';
+import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice} from './styled.js';
 import Header from "./components/Header/index.js";
 import axios from "axios";
 
 
 
-
-
-
-
-    // const data = [
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "anshuman", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-    //     { challan_id: "Anom", date: 19/12/22, city: "Bengluru",area: "kormangla",licenceNumber: "KA01CA4214",violationType:"no helmet",fineAmount:"4000",reciept:"--",evidence:"--" },
-
-       
-    //   ]
         
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
         const {choice,id} = useParams();
         const [loader,setLoader]=useState(true);
+
+
+        
+
+        
+
+
         console.log(id);
+
 
         useEffect (()=>{
           axios
@@ -38,11 +31,37 @@ import axios from "axios";
                 console.log(error);
               })
         },[]);
+        
+        let i=1;
+        // const ids =  Array(vehicleData.length).fill(false);
+
+        const handleCheckbox = (e)=>{
+            const {name,checked} = e.target;
+            if(name === "select_all"){
+              let tempId = vehicleData.map((vehicleId) => {return {...vehicleId , isChecked : checked}});
+              console.log(tempId);
+              setVehicleData(tempId);
+            }else {
+              let tempId = vehicleData.map((vehicleId) => vehicleId.violationId === name ? {...vehicleId, isChecked: checked}: vehicleId);
+            // console.log(tempId);
+
+
+              setVehicleData(tempId);
+            }
+        };
+
+
+
+
+
+
+
 
         if(loader){
           return(<div>loading....</div>)
         }
 
+        
 
         
         return (
@@ -57,15 +76,31 @@ import axios from "axios";
             </VehicleNumber>  
           </HeadTag>
           <PendingChallan>
-         <p> You have 8 pending challans</p>
+         <p> You have {vehicleData.length} pending challans</p>
           </PendingChallan>
-          <Header></Header>
-          {/* <div>
-            <PendingChallan>You have 8 pending challans</PendingChallan>
-          </div> */}
+          <Notice>
+            <p> NOTE:</p>
+            <p className="staticNote">Further failure to pay the challans within 90 days, will lead to further penalities, or your vehicles will be seized</p>
+          </Notice>
 
-            <Table>
+          <Header>
+
+          </Header>
+
+            <Table id="data-table">
+              <thead>
               <tr style={{backgroundColor: '#D5D8DE'}}>
+                <th>
+                <input name="select_all"
+                       value="1" 
+                       type="checkbox"
+                       checked={vehicleData.filter((vehicleId) => vehicleId?.isChecked!==true).length < 1}
+                       onChange={handleCheckbox}
+                       
+                      
+
+                        />
+                </th>
                 <th>Challan ID</th>
                 <th>Date</th>
                 <th>City</th>
@@ -73,12 +108,21 @@ import axios from "axios";
                 <th>Licence Number</th>
                 <th>Violation Type</th>
                 <th>Fine Amount</th>
-                <th>Reciept</th>
+                <th>Due Date</th>
                 <th>Evidence</th>
               </tr>
+              </thead>
               {vehicleData.map((val, key) => {
                 return (
+                  <tbody className="checkboxInput">
                   <tr key={key}>
+                    <td>
+                      <input type="checkbox" 
+                            name={val.violationId}
+                            onChange={handleCheckbox}
+                            checked={val?.isChecked||false}
+                      />
+                    </td>
                     <td>{val.violationId}</td>
                     <td>{val.violationDate.slice(0,10)}</td>
                     <td>{val.cityName}</td>
@@ -86,9 +130,10 @@ import axios from "axios";
                     <td>{val.licensePlateNumber}</td>
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
-                    <td>{val.reciept}</td>
-                    <td>{val.evidence}</td>
+                    <td>{val.dueDate.slice(0,10)}</td>
+                    <td><a href={val.imageUrl}>View</a></td>
                   </tr>
+                  </tbody>
                 )
               })}
             </Table>

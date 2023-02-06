@@ -59,23 +59,49 @@ export const VehicleNumber = styled.span`
 
 export const PendingChallan = styled.div`
         position: relative;
-width: 800px;
-height: 27px;
-margin-top: 30px;
+
+width: 250px;
+margin-top: 10px;
 
 font-family: 'InterExtraLight';
 font-style: normal;
 font-weight: 600;
 font-size: 14px;
-line-height: 27px;
+/* line-height: 27px; */
 /* identical to box height */
 
 display: flex;
-align-items: center;
+justify-content: flex-start;
+align-items: flex-start;
+/* flex-direction: column; */
 
 color: red;
 
 `;
+
+
+export const Notice = styled.div`
+ position: relative;
+width: 900px;
+height: 10px; 
+display: flex;
+align-items: center;
+justify-content: center;
+/* margin-bottom: 30px; */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+
+/* identical to box height */
+
+
+color: #000000;
+
+`
+
 
 
 
