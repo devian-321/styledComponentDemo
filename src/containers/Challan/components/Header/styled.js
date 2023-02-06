@@ -7,7 +7,7 @@ export const HeadContainer = styled.div`
     align-items: flex-start;
     flex-direction: row;
     padding-top: 30px;
-    width: 1200px;
+    width: 1279px;
 `
 export const HeadSubContainer= styled.header`
     align-self: flex-start;

@@ -115,11 +115,12 @@ color: #000000;
 //Table
 export const Table = styled.table`
     box-sizing: border-box;
-    position: absolute;
+    position: relative;
     width: 1279px;
     height: 705px;
-    left: 82px;
-    top: 271px;
+    margin-top: 10px;
+    /* left: 82px;
+    top: 271px; */
     background: #FFFFFF;
     border: 1px solid #AAAAAA;
     border-radius: 2px;
@@ -127,11 +128,12 @@ export const Table = styled.table`
 
 //Columns
 export const Column = styled.tr`
-    position: absolute;
+    position: relative;
     width: 1279px;
     height: 60px;
-    left: 82px;
-    top: 271px;
+    
+    /* left: 82px;
+    top: 271px; */
     background: #D5D8DE;
     border-radius: 4px;
 
