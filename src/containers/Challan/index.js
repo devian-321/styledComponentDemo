@@ -45,7 +45,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             if(name === "select_all"){
               let tempId = vehicleData.map((vehicleId) => {return {...vehicleId , isChecked : checked}});
               console.log(tempId);
-              // setPayAmount(sumAmount(tempId));
+              setPayAmount(sumAmount(tempId));
               setVehicleData(tempId);
             }else {
               let tempId = vehicleData.map((vehicleId) => vehicleId.violationId === name ? {...vehicleId, isChecked: checked}: vehicleId);
