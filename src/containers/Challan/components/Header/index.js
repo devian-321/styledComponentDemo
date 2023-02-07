@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink,link } from "react-router-dom";
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton} from "./styled";
 
 
@@ -9,12 +9,12 @@ const Header = ()=>{
             <nav>
                 <Ul>
                     
-                    <LiU><NavLink to={"/unpaidChallan"}>UnpaidChallan</NavLink></LiU>
-                    <LiP><NavLink to = {"/paidChallan"}>PaidChallan</NavLink></LiP>
+                    <LiU><NavLink href={"/unpaidChallan"}>UnpaidChallan</NavLink></LiU>
+                    <LiP><NavLink href = {"/paidChallan"}>PaidChallan</NavLink></LiP>
                 </Ul>
             </nav>
             </HeadSubContainer>
-            <PayButton>
+            <PayButton >
                 pay 4200
             </PayButton>
             

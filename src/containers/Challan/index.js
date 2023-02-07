@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice} from './styled.js';
+import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import Header from "./components/Header/index.js";
 import axios from "axios";
 
@@ -33,6 +33,7 @@ import axios from "axios";
         },[]);
         
         let i=1;
+        let payAmount = 0;
         // const ids =  Array(vehicleData.length).fill(false);
 
         const handleCheckbox = (e)=>{
@@ -49,6 +50,8 @@ import axios from "axios";
               setVehicleData(tempId);
             }
         };
+
+        
 
 
 
@@ -88,9 +91,10 @@ import axios from "axios";
           </Header>
 
             <Table id="data-table">
-              <thead>
-              <tr style={{backgroundColor: '#D5D8DE'}}>
-                <th>
+              <Thead>
+              <tr>
+                <th >
+                <p>Select All</p>
                 <input name="select_all"
                        value="1" 
                        type="checkbox"
@@ -101,7 +105,7 @@ import axios from "axios";
 
                         />
                 </th>
-                <th>Challan ID</th>
+                <th >Challan ID</th>
                 <th>Date</th>
                 <th>City</th>
                 <th>Area</th>
@@ -111,10 +115,10 @@ import axios from "axios";
                 <th>Due Date</th>
                 <th>Evidence</th>
               </tr>
-              </thead>
+              </Thead>
               {vehicleData.map((val, key) => {
                 return (
-                  <tbody className="checkboxInput">
+                  <Tbody className="checkboxInput">
                   <tr key={key}>
                     <td>
                       <input type="checkbox" 
@@ -133,7 +137,7 @@ import axios from "axios";
                     <td>{val.dueDate.slice(0,10)}</td>
                     <td><a href={val.imageUrl}>View</a></td>
                   </tr>
-                  </tbody>
+                  </Tbody>
                 )
               })}
             </Table>

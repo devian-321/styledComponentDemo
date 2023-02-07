@@ -115,6 +115,9 @@ color: #000000;
 //Table
 export const Table = styled.table`
     box-sizing: border-box;
+   
+   
+    
     position: relative;
     width: 1279px;
     height: 705px;
@@ -138,3 +141,55 @@ export const Column = styled.tr`
     border-radius: 4px;
 
 `;
+export const Thead = styled.thead`
+    position: relative;
+    width: 1279px;
+    height: 63px;
+    background: #D5D8DE;
+    border-radius: 4px;
+
+    font-family: 'InterExtraLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    /* color: #2D2D32; */
+    `
+export const Tbody = styled.tbody`
+    position: relative;
+    width: 1279px;
+    height: 63px;
+    padding-left: 10px;
+    /* background: #D5D8DE; */
+    border-radius: 4px;
+
+    font-family: 'InterExtraLight';
+    font-style: normal;
+    font-weight: 500;
+font-size: 13px;
+line-height: 16px;
+/* identical to box height */
+
+
+color: #2D2D32;
+
+`
+
+// export const SelectAll = styled.p`
+//     position: relative;
+// width: 59px;
+// height: 16px;
+
+// font-family: 'Inter';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 13px;
+// line-height: 16px;
+// /* identical to box height */
+
+
+// color: #2D2D32;
+
+// `
+// `
+// style={{backgroundColor: '#D5D8DE'}}

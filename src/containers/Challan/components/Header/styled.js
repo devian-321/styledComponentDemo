@@ -54,6 +54,7 @@ font-weight: 500;
 font-size: 14px;
 line-height: 17px;
 color: #2D2D32;
+list-style-type: none;
 
 `
 
@@ -70,6 +71,8 @@ font-size: 14px;
 line-height: 17px;
 /* identical to box height */
 color: #F58706;
+list-style-type: none;
+
 
 
 `

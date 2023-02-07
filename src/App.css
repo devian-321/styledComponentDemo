@@ -47,13 +47,13 @@
   font-family: "InterExtralight";
   src: local("Inter"),url("./fonts/Inter/Inter-ExtraLight.ttf") format("truetype");
 }
-.checkbox-text {
+/* .checkbox-text {
   font-family: 'InterExtralight';
   font-style: normal;
   padding-left: 10px;
   color: #6B6B6B;
   font-size: small;
-}
+} */
 
 .staticNote {
   font-family: 'InterExtralight';
