@@ -60,7 +60,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const sumAmount = (tempId)=>{
           var sum = 0;
           for(let i=0;i<tempId.length;i++){
+           if(tempId[i].isChecked ===true){
             sum+=parseInt(tempId[i].fineAmount);
+           }
             // console.log(sum);
 
           }
