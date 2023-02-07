@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import Header from "./components/Header/index.js";
 import axios from "axios";
+import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
 
 
@@ -11,6 +12,8 @@ import axios from "axios";
         const [vehicleData,setVehicleData] = useState([]);
         const {choice,id} = useParams();
         const [loader,setLoader]=useState(true);
+        const [payAmount,setPayAmount] = useState(0);
+
 
 
         
@@ -27,13 +30,14 @@ import axios from "axios";
               .then((res)=>{
                 setVehicleData(res.data);
                 setLoader(false);
+                setPayAmount(0);
               }).catch((error)=>{
                 console.log(error);
               })
         },[]);
         
-        let i=1;
-        let payAmount = 0;
+        // let i=1;
+        // let payAmount = 0;
         // const ids =  Array(vehicleData.length).fill(false);
 
         const handleCheckbox = (e)=>{
@@ -41,15 +45,28 @@ import axios from "axios";
             if(name === "select_all"){
               let tempId = vehicleData.map((vehicleId) => {return {...vehicleId , isChecked : checked}});
               console.log(tempId);
+              // setPayAmount(sumAmount(tempId));
               setVehicleData(tempId);
             }else {
               let tempId = vehicleData.map((vehicleId) => vehicleId.violationId === name ? {...vehicleId, isChecked: checked}: vehicleId);
-            // console.log(tempId);
 
-
+             setPayAmount(sumAmount(tempId));
+            console.log(payAmount);
               setVehicleData(tempId);
             }
+
         };
+        
+        const sumAmount = (tempId)=>{
+          var sum = 0;
+          for(let i=0;i<tempId.length;i++){
+            sum+=parseInt(tempId[i].fineAmount);
+            // console.log(sum);
+
+          }
+          return sum;
+
+        }
 
         
 
@@ -86,9 +103,22 @@ import axios from "axios";
             <p className="staticNote">Further failure to pay the challans within 90 days, will lead to further penalities, or your vehicles will be seized</p>
           </Notice>
 
-          <Header>
-
-          </Header>
+          <HeadContainer>
+            <HeadSubContainer>
+            <nav>
+                <Ul>
+                    
+                    <LiU><A href={"/unpaidChallan"}>Unpaid Challan</A></LiU>
+                    <LiP><A href = {"/paidChallan"}>Paid Challan</A></LiP>
+                </Ul>
+            </nav>
+            </HeadSubContainer>
+            <PayButton >
+                pay {payAmount}
+            </PayButton>
+            
+        
+        </HeadContainer>
 
             <Table id="data-table">
               <Thead>

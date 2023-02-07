@@ -2,6 +2,7 @@ import { NavLink,link } from "react-router-dom";
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./styled";
 
 
+
 const Header = ()=>{
     return(
         <HeadContainer>
