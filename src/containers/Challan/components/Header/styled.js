@@ -15,6 +15,7 @@ export const HeadSubContainer= styled.header`
     justify-content: space-between;
     align-items: flex-start;
     
+    
 
 
 `
@@ -73,6 +74,21 @@ line-height: 17px;
 color: #F58706;
 list-style-type: none;
 
+`
+export const A = styled.a`
+    text-decoration: none;
+    :link{
+        font-family: 'InterExtraLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+/* identical to box height */
 
+
+    color: #2D2D32;
+    }
+    
+    
 
 `

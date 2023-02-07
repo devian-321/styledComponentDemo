@@ -121,6 +121,7 @@ import axios from "axios";
                   <Tbody className="checkboxInput">
                   <tr key={key}>
                     <td>
+                   
                       <input type="checkbox" 
                             name={val.violationId}
                             onChange={handleCheckbox}

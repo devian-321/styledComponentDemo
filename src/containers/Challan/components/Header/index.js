@@ -1,5 +1,5 @@
 import { NavLink,link } from "react-router-dom";
-import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton} from "./styled";
+import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./styled";
 
 
 const Header = ()=>{
@@ -9,8 +9,8 @@ const Header = ()=>{
             <nav>
                 <Ul>
                     
-                    <LiU><NavLink href={"/unpaidChallan"}>UnpaidChallan</NavLink></LiU>
-                    <LiP><NavLink href = {"/paidChallan"}>PaidChallan</NavLink></LiP>
+                    <LiU><A href={"/unpaidChallan"}>Unpaid Challan</A></LiU>
+                    <LiP><A href = {"/paidChallan"}>Paid Challan</A></LiP>
                 </Ul>
             </nav>
             </HeadSubContainer>

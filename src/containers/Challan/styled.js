@@ -159,15 +159,15 @@ export const Tbody = styled.tbody`
     position: relative;
     width: 1279px;
     height: 63px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     /* background: #D5D8DE; */
     border-radius: 4px;
 
     font-family: 'InterExtraLight';
     font-style: normal;
     font-weight: 500;
-font-size: 13px;
-line-height: 16px;
+    font-size: 13px;
+    line-height: 16px;
 /* identical to box height */
 
 
