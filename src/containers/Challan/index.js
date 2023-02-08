@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
-import Header from "./components/Header/index.js";
+// import Header from "./components/Header/index.js";
 import axios from "axios";
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
@@ -10,20 +10,13 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
+        const[paidViolation,setPaidViolation]= useState(false);
         const {choice,id} = useParams();
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
 
 
-
         
-
-        
-
-
-        console.log(id);
-
-
         useEffect (()=>{
           axios
               .get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
@@ -35,49 +28,53 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 console.log(error);
               })
         },[]);
-        
-        // let i=1;
-        // let payAmount = 0;
-        // const ids =  Array(vehicleData.length).fill(false);
+
+       
 
         const handleCheckbox = (e)=>{
             const {name,checked} = e.target;
             if(name === "select_all"){
               let tempId = vehicleData.map((vehicleId) => {return {...vehicleId , isChecked : checked}});
-              console.log(tempId);
+              // console.log(tempId);
               setPayAmount(sumAmount(tempId));
               setVehicleData(tempId);
             }else {
               let tempId = vehicleData.map((vehicleId) => vehicleId.violationId === name ? {...vehicleId, isChecked: checked}: vehicleId);
 
              setPayAmount(sumAmount(tempId));
-            console.log(payAmount);
+            // console.log(payAmount);
               setVehicleData(tempId);
             }
 
         };
+        useEffect (()=>{
+          setPayAmount(payAmount)
+          console.log(payAmount);
+       },[payAmount])
+
+       
         
+
+        const handlePaidChallan = ()=>{
+          setPaidViolation(true);
+        }
+        const handleUnpaidChallan = ()=>{
+          setPaidViolation(false);
+        }
+        
+
+
         const sumAmount = (tempId)=>{
           var sum = 0;
           for(let i=0;i<tempId.length;i++){
            if(tempId[i].isChecked ===true){
             sum+=parseInt(tempId[i].fineAmount);
            }
-            // console.log(sum);
-
           }
           return sum;
-
         }
 
         
-
-
-
-
-
-
-
 
         if(loader){
           return(<div>loading....</div>)
@@ -110,8 +107,8 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             <nav>
                 <Ul>
                     
-                    <LiU><A href={"/unpaidChallan"}>Unpaid Challan</A></LiU>
-                    <LiP><A href = {"/paidChallan"}>Paid Challan</A></LiP>
+                    <LiU><A onClick={handleUnpaidChallan} to={`./`}>Unpaid Challan</A></LiU>
+                    <LiP><A onClick={handlePaidChallan} >Paid Challan</A></LiP>
                 </Ul>
             </nav>
             </HeadSubContainer>
@@ -144,7 +141,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 <th>Licence Number</th>
                 <th>Violation Type</th>
                 <th>Fine Amount</th>
-                <th>Due Date</th>
+               {paidViolation === true? <th>Reciept</th>: <th>Due Date</th>}
                 <th>Evidence</th>
               </tr>
               </Thead>
@@ -167,7 +164,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.licensePlateNumber}</td>
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
-                    <td>{val.dueDate.slice(0,10)}</td>
+                   {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> }
                     <td><a href={val.imageUrl}>View</a></td>
                   </tr>
                   </Tbody>

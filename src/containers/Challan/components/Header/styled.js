@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -75,10 +76,10 @@ color: #F58706;
 list-style-type: none;
 
 `
-export const A = styled.a`
+export const A = styled(Link)`
     text-decoration: none;
     :link{
-        font-family: 'InterExtraLight';
+    font-family: 'InterExtraLight';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -87,6 +88,10 @@ export const A = styled.a`
 
 
     color: #2D2D32;
+    }
+    :active{
+        color: #F58706;
+        text-decoration: underline;
     }
     
     
