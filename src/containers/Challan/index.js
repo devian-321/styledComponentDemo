@@ -11,9 +11,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
         const[paidViolation,setPaidViolation]= useState(false);
-        const {choice,id} = useParams();
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
+        const {choice,id} = useParams();
 
 
         
@@ -48,11 +48,12 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
 
         };
         useEffect (()=>{
-          setPayAmount(payAmount)
+          setPayAmount(payAmount);
           console.log(payAmount);
        },[payAmount])
 
        
+
         
 
         const handlePaidChallan = ()=>{
@@ -61,7 +62,21 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const handleUnpaidChallan = ()=>{
           setPaidViolation(false);
         }
-        
+
+        useEffect(()=>{
+          setPaidViolation(paidViolation);
+          if(paidViolation ===true){
+            axios.get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
+              .then((res)=>{
+                setVehicleData(res.data);
+                setLoader(false);
+                setPayAmount(0);
+              }).catch((error)=>{
+                console.log(error);
+              });
+          }
+        },[paidViolation])
+       
 
 
         const sumAmount = (tempId)=>{
@@ -112,9 +127,12 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 </Ul>
             </nav>
             </HeadSubContainer>
-            <PayButton >
+           {paidViolation ===false?  
+           <PayButton >
                 pay {payAmount}
             </PayButton>
+            : <div></div>
+            }
             
         
         </HeadContainer>
@@ -122,7 +140,8 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             <Table id="data-table">
               <Thead>
               <tr>
-                <th >
+                {paidViolation === false ? 
+                  <th >
                 <p>Select All</p>
                 <input name="select_all"
                        value="1" 
@@ -133,7 +152,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                       
 
                         />
-                </th>
+                </th>: <></>}
                 <th >Challan ID</th>
                 <th>Date</th>
                 <th>City</th>
@@ -149,14 +168,16 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 return (
                   <Tbody className="checkboxInput">
                   <tr key={key}>
-                    <td>
+                    {paidViolation === false ? 
+                      <td>
                    
                       <input type="checkbox" 
                             name={val.violationId}
                             onChange={handleCheckbox}
                             checked={val?.isChecked||false}
                       />
-                    </td>
+                    </td>: <></>
+                    }
                     <td>{val.violationId}</td>
                     <td>{val.violationDate.slice(0,10)}</td>
                     <td>{val.cityName}</td>
