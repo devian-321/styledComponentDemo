@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
-// import Header from "./components/Header/index.js";
 import axios from "axios";
+import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
 
@@ -35,14 +35,12 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             const {name,checked} = e.target;
             if(name === "select_all"){
               let tempId = vehicleData.map((vehicleId) => {return {...vehicleId , isChecked : checked}});
-              // console.log(tempId);
               setPayAmount(sumAmount(tempId));
               setVehicleData(tempId);
             }else {
               let tempId = vehicleData.map((vehicleId) => vehicleId.violationId === name ? {...vehicleId, isChecked: checked}: vehicleId);
 
              setPayAmount(sumAmount(tempId));
-            // console.log(payAmount);
               setVehicleData(tempId);
             }
 
@@ -66,7 +64,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         useEffect(()=>{
           setPaidViolation(paidViolation);
           if(paidViolation ===true){
-            axios.get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
+            axios.get (`https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798`)
               .then((res)=>{
                 setVehicleData(res.data);
                 setLoader(false);

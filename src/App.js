@@ -5,12 +5,12 @@ import { lazy, Suspense } from 'react';
 import Form from './containers/Form';
 import UnpaidChallan from './containers/Unpaid Challan';
 import Spinner from './components/Spinner';
-
+import Challan from './containers/Challan';
 import "./fonts/Inter/Inter-SemiBold.ttf";
 import "./fonts/Inter/Inter-Regular.ttf";
 
 // const Form = lazy(()=> import("./containers/Form"));
-const Challan = lazy(()=> import("./containers/Challan"));
+
 
 
 
@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Suspense fallback={<div><Spinner /></div>} />
+      {/* <Suspense fallback={<div><Spinner /></div>} /> */}
         <Routes>
           <Route exact path='/' element={<Form />} />
           <Route exact path='/Challan/:choice/:id' element={<Challan />} ></Route>

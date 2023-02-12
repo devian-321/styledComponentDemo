@@ -15,8 +15,7 @@ import {MainContainer,
          Captcha,
          SubmitContainer} from './form.styles'
 import { Link} from "react-router-dom";
-// import { VehicleNumber } from "../Challan/styled";
-// import Challan from "../Challan";
+
 
 
 
@@ -66,15 +65,14 @@ function Form() {
 
 
     const handleSubmit = (e)=>{
-            // e.preventDefault();
-        //  console.log(inputField);
+           
         setFormError(validation(inputField));
          if(!checkboxVerification){
             alert("you haven't checked the box"); 
-             e.preventDefault();  /// if checkbox is not checked.
+             e.preventDefault();  
          }else {
             
-            console.log(inputField); /// when the check box is checked.
+            console.log(inputField); 
          }
          
     }
@@ -159,9 +157,6 @@ function Form() {
                          
                      </CheckBoxContainer>
 
-                     {/* SubmitButton */}
-
-                    {/* <SubmitContainer> */}
                            <Link to={`./Challan/${radioChoice}/${inputField}`}>
                               <SubmitButton 
                                  type="submit" 
@@ -169,11 +164,6 @@ function Form() {
                                  id="submitButton" > SUBMIT
                               </SubmitButton>
                            </Link>
-                    {/* </SubmitContainer> */}
-                   
-                     {/* <SubmitButton onClick={handleOnClick}  id="submitButton">SUBMIT</SubmitButton> */}
-    
-                    
              </FormContainer>
                 </Container>
                      
@@ -181,54 +171,3 @@ function Form() {
     )}
 
 export default Form;
-
-// class Form extends Component {
-//     constructor(props){
-//         super(props)
-
-//         this.state = {
-//             vehicleNumber: ''
-//         }
-
-
-//     }
-
-//     handleChallanChange = (event)=>{
-//         console.log(event.target.value);
-//         this.setState({
-//             vehicleNumber: event.target.value
-//         })
-
-//     }
-
-
-
-// render() {
-//     return(
-//         <form>
-//             <div>
-//                 <H1>E-challan Payment</H1>
-
-
-//                 <InputChallan type="text"  value={this.state.vehicleNumber} 
-                
-//                                             onChange={this.handleChallanChange} />
-
-//                 <Label>
-//                     <div class="input-container">
-//                         <input type="checkbox" class="checkbox" id="check" />
-
-//                         <span class="checkbox-text">I'm not a robot</span>
-                        
-//                     </div>
-//                 </Label>
-
-//                 <SubmitButton>Submit</SubmitButton>
-
-//             </div>
-//         </form>
-//     )
-// }
-// }
-
-// export default Form 
