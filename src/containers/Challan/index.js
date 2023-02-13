@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import axios from "axios";
-import $ from "jquery"
+// import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
 
@@ -10,6 +10,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         
       function Challan() {
         const [vehicleData,setVehicleData] = useState([]);
+        const [paidChallanData,setPaidChallan] = useState([]);
         const[paidViolation,setPaidViolation]= useState(false);
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
@@ -19,15 +20,39 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         
         useEffect (()=>{
           axios
-              .get ("https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798")
+              .get ('https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation'
+                    ,{params: {
+                        licensePlaterNumber: id.toString(),
+                        violationId : "blablabla"
+                    }})
               .then((res)=>{
                 setVehicleData(res.data);
+                // console.log(res.config.url)
                 setLoader(false);
                 setPayAmount(0);
               }).catch((error)=>{
                 console.log(error);
               })
         },[]);
+
+        useEffect(()=>{
+          setPaidViolation(paidViolation);
+          if(paidViolation ===true){
+            axios.get ('https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation',
+              {params : {
+                licensePlaterNumber:"KA27EE9417",violationid:"CA3277798",pageNum:"1"
+              }}
+            )
+              .then((res)=>{
+                setPaidChallan(res.data);
+                setLoader(false);
+                setPayAmount(0);
+                console.log("here we go",paidChallanData);
+              }).catch((error)=>{
+                console.log(error);
+              });
+          }
+        },[paidViolation])
 
        
 
@@ -61,19 +86,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
           setPaidViolation(false);
         }
 
-        useEffect(()=>{
-          setPaidViolation(paidViolation);
-          if(paidViolation ===true){
-            axios.get (`https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation?licensePlaterNumber=KA27EE9417&violationid=CA3277798`)
-              .then((res)=>{
-                setVehicleData(res.data);
-                setLoader(false);
-                setPayAmount(0);
-              }).catch((error)=>{
-                console.log(error);
-              });
-          }
-        },[paidViolation])
+        
        
 
 

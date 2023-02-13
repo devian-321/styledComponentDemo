@@ -36,7 +36,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Form />} />
           <Route exact path='/Challan/:choice/:id' element={<Challan />} ></Route>
-          <Route exact path='/unpaidChallan' element={<UnpaidChallan />} />
+          {/* <Route exact path='/unpaidChallan' element={<UnpaidChallan />} /> */}
           <Route default path='/' />
         </Routes>
       </BrowserRouter>

@@ -48,8 +48,9 @@ function Form() {
         console.log("it is challan number");
        }
        else {
-        console.log("it is vehicle Number");
+        
          document.getElementById('enterDetail').placeholder='Enter your Vehicle Number';
+         console.log("it is vehicle Number");
        }
     }
    
