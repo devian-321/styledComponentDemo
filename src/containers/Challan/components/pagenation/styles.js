@@ -24,6 +24,13 @@ border-radius: 2px;
 export const PageNumber = styled.a`
 width: 20px;
 height: 31px;
+display: inline-block;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 30px;
+/* align-items: center; */
 /* left: 127px;
 top: 890px; */
 
