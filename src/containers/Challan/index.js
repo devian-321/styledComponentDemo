@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import axios from "axios";
+import Pagenation from "./components/pagenation/index.js";
 // import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
@@ -14,6 +15,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const[paidViolation,setPaidViolation]= useState(false);
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
+
+        const [currPage,setCurrentPage] = useState(1)
+        const [totalPages,setTotalPages] = useState(0);
         const {choice,id} = useParams();
 
 
@@ -45,8 +49,12 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             )
               .then((res)=>{
                 setPaidChallan(res.data);
+                setCurrentPage(res.data.number);
+                setTotalPages(res.data.totalPages);  
                 setLoader(false);
                 setPayAmount(0);
+                console.log(totalPages);
+                console.log(currPage);
                 console.log("here we go",paidChallanData);
               }).catch((error)=>{
                 console.log(error);
@@ -203,6 +211,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 )
               })}
             </Table>
+            {paidViolation ===true? <Pagenation cPage={currPage} tPage={totalPages}/>: <></>}
           </MainContainer>
         );
       }
