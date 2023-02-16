@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
-import Pagenation from "./components/pagenation/index.js";
+// import Pagenation from "./components/pagenation/index.js";
 // import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
@@ -69,8 +69,8 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         }}
             )
               .then((res)=>{
-                setPaidChallan(res.data);
-                // setVehicleData(res.data);
+                // setPaidChallan(res.data);
+                 setVehicleData(res.data);
                 setCurrentPage(res.data.number);
                 setTotalPages(res.data.totalPages);  
                 setLoader(false);
@@ -122,9 +122,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         // return {result,currPage,setCurrentPage,getNextPage,getPrevPage,totalPages,setTotalPages};
         // };
 
-        const getUrl = (page)=>
-          `https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?licensePlateNumber=KA27EE9417&violationid=CA3277798&pageNum=
-          ${page}`
+        // const getUrl = (page)=>
+        //   `https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?licensePlateNumber=KA27EE9417&violationid=CA3277798&pageNum=
+        //   ${page}`
         
 
 
@@ -259,12 +259,13 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
               </Thead>
               { vehicleData.map((val, key) => {
                 return (
-                  <Tbody className="checkboxInput">
+                  <Tbody >
                   <tr key={key}>
                     {paidViolation === false ? 
                       <td>
                    
                       <input type="checkbox" 
+                              value= "1"
                             name={val.violationId}
                             onChange={handleCheckbox}
                             checked={val?.isChecked||false}
@@ -286,7 +287,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
               })}
             </Table>
             {paidViolation ===true? 
-              <HeadContainer>
+              <HeadPContainer>
             <SubContainer>
                 <Button onClick={getPrevPage}>{/* <Button  onClick={getPrevPage}> */}
                     Prev
@@ -304,7 +305,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     Page {currPage} of {totalPages}
                 </P>
             </div>
-        </HeadContainer>: <></>}
+        </HeadPContainer>: <></>}
           </MainContainer>
         );
       }
