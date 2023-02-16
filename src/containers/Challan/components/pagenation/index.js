@@ -1,5 +1,5 @@
 import React from "react";
-import { HeadContainer,SubContainer,P,PageNumber,Button } from "./styles";
+import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./styles";
 
 
 function Pagenation({cPage,tPage}) {
@@ -13,7 +13,7 @@ function Pagenation({cPage,tPage}) {
     };
 
     return (
-        <HeadContainer>
+        <HeadPContainer>
             <SubContainer>
                 <Button onClick={getPrevPage()}>
                     Prev
@@ -31,7 +31,7 @@ function Pagenation({cPage,tPage}) {
                     Page {cPage} of {tPage}
                 </P>
             </div>
-        </HeadContainer>
+        </HeadPContainer>
     );
 }
 

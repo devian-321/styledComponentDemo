@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,Column,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
+import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
+import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
 import Pagenation from "./components/pagenation/index.js";
 // import $ from "jquery"
@@ -16,18 +17,22 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
 
-        const [currPage,setCurrentPage] = useState(1)
+        const [currPage,setCurrentPage] = useState(0)
         const [totalPages,setTotalPages] = useState(0);
+
+       
+
+
         const {choice,id} = useParams();
 
 
         
         useEffect (()=>{
           axios
-              .get ('https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/unpaid-violation'
+              .get ('https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/unpaid-violation'
                     ,{params: {
                         licensePlaterNumber: id.toString(),
-                        violationId : "blablabla"
+                        violationId : "CA3277798"
                     }})
               .then((res)=>{
                 setVehicleData(res.data);
@@ -35,32 +40,98 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 setLoader(false);
                 setPayAmount(0);
               }).catch((error)=>{
+                // alert(error.message)
                 console.log(error);
               })
         },[]);
 
+        
+
+          const getPrevPage =()=>{
+            setCurrentPage(Math.ceil(0,currPage));
+        };
+    
+        const getNextPage =()=>{
+            setCurrentPage(currPage+1);
+        };
+
+
         useEffect(()=>{
           setPaidViolation(paidViolation);
+          setCurrentPage(currPage);
           if(paidViolation ===true){
-            axios.get ('https://4d9e0af3-08e5-4271-a537-129c5de57f68.mock.pstmn.io//dashboard/payment/paid-violation',
-              {params : {
-                licensePlaterNumber:"KA27EE9417",violationid:"CA3277798",pageNum:"1"
-              }}
+            axios.get (
+              'https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?',
+              {params: {
+            licensePlaterNumber: id.toString(),
+            violationId : "CA3277798",
+            pageNum: currPage.toString()
+        }}
             )
               .then((res)=>{
                 setPaidChallan(res.data);
+                // setVehicleData(res.data);
                 setCurrentPage(res.data.number);
                 setTotalPages(res.data.totalPages);  
                 setLoader(false);
-                setPayAmount(0);
+                // setPayAmount(0);
                 console.log(totalPages);
                 console.log(currPage);
                 console.log("here we go",paidChallanData);
               }).catch((error)=>{
+                alert(error.message)
                 console.log(error);
               });
           }
-        },[paidViolation])
+        },[paidViolation,currPage])
+
+
+
+
+        //new pagination
+
+
+        
+
+        // const usePaginationFetch = (getUrl)=>{
+        //   const [currPage,setCurrentPage] = useState(1)
+        //   const [totalPages,setTotalPages] = useState(0);
+        //   const [result,setResult] = useState([]);
+        //   const pageSize = 10;
+
+        //   useEffect(()=>{
+        //       setLoader(true);
+        //       axios.get(getUrl(currPage))
+        //           .then((res)=>{
+        //             setResult(res.data);
+        //             setLoader(false);
+        //             console.log(res.data);
+        //           }).catch((error) =>{
+        //             console.log(error);
+        //           });
+        //   },[currPage,getUrl]);
+
+        //   const getPrevPage =()=>{
+        //     setCurrentPage(Math.ceil(0,currPage-1));
+        // };
+    
+        // const getNextPage =()=>{
+        //     setCurrentPage(currPage+1);
+        // };
+
+        // return {result,currPage,setCurrentPage,getNextPage,getPrevPage,totalPages,setTotalPages};
+        // };
+
+        const getUrl = (page)=>
+          `https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?licensePlateNumber=KA27EE9417&violationid=CA3277798&pageNum=
+          ${page}`
+        
+
+
+        // const {result,currPage,getNextPage,getPrevPage,totalPages} = usePaginationFetch(
+        //   getUrl
+        // );
+
 
        
 
@@ -107,6 +178,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
           }
           return sum;
         }
+
+
+        
 
         
 
@@ -183,7 +257,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 <th>Evidence</th>
               </tr>
               </Thead>
-              {vehicleData.map((val, key) => {
+              { vehicleData.map((val, key) => {
                 return (
                   <Tbody className="checkboxInput">
                   <tr key={key}>
@@ -211,7 +285,26 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 )
               })}
             </Table>
-            {paidViolation ===true? <Pagenation cPage={currPage} tPage={totalPages}/>: <></>}
+            {paidViolation ===true? 
+              <HeadContainer>
+            <SubContainer>
+                <Button onClick={getPrevPage}>{/* <Button  onClick={getPrevPage}> */}
+                    Prev
+                </Button>
+                <PageNumber>
+                    {currPage}
+                </PageNumber>
+                <PageNumber>{currPage+1}</PageNumber>
+                <Button onClick={getNextPage}>{/* <Button  onClick={getNextPage}> */}
+                    Next
+                </Button>
+            </SubContainer>
+            <div>
+                <P>
+                    Page {currPage} of {totalPages}
+                </P>
+            </div>
+        </HeadContainer>: <></>}
           </MainContainer>
         );
       }

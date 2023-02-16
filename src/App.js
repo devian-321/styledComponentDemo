@@ -1,10 +1,10 @@
 
 import './App.css';
-import { BrowserRouter,Route,Routes,useParams } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
+// import { lazy, Suspense } from 'react';
 import Form from './containers/Form';
-import UnpaidChallan from './containers/Unpaid Challan';
-import Spinner from './components/Spinner';
+// import UnpaidChallan from './containers/Unpaid Challan';
+// import Spinner from './components/Spinner';
 import Challan from './containers/Challan';
 import "./fonts/Inter/Inter-SemiBold.ttf";
 import "./fonts/Inter/Inter-Regular.ttf";
@@ -21,10 +21,7 @@ import "./fonts/Inter/Inter-Regular.ttf";
 
 
 
-{/* <Route path="users">
-<Route path=":userId" element={<ProfilePage />} />
-<Route path="me" element={...} />
-</Route> */}
+
 
 function App() {
 

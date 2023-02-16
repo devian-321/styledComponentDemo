@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 
-export const HeadContainer = styled.div`
+export const HeadPContainer = styled.div`
     display: flex;
     justify-content: space-between;
     /* align-items: flex-start; */
@@ -45,9 +45,9 @@ top: 890px; */
     margin: 0 4px;
 `
 
-export const Button = styled.a`
-    width: 28px;
-height: 16px;
+export const Button = styled.button`
+    width: 45px;
+height: 31px;
 /* left: 94px;
 top: 898px; */
 
