@@ -12,8 +12,7 @@ import {MainContainer,
          ChallanNumberRadio,
          InputContainer,
          CheckBoxInput,
-         Captcha,
-         SubmitContainer} from './form.styles'
+         Captcha} from './form.styles'
 import { Link} from "react-router-dom";
 
 
@@ -26,7 +25,7 @@ function Form() {
    const [checkboxVerification ,setCheckbox]= useState(false);
    const [radioChoice,setRadioChoice] = useState("vehicleNumber");
    const [formError,setFormError] = useState("");
-//    const[isValidSubmit,setValidSubmit] = useState(false);
+
 
 
     const handleOnChange = (e) =>{
@@ -39,10 +38,9 @@ function Form() {
     const handleRadioChoice = (e)=>{  
        
         let radioStatus = e.target.value;                        
-        // console.log(e.target.value);
        setRadioChoice(e.target.value);
-        // console.log(radioChoice);
-       if(radioStatus =="challanNumber"){
+
+       if(radioStatus ==="challanNumber"){
 
           document.getElementById('enterDetail').placeholder='Enter your Challan ID';
         console.log("it is challan number");
@@ -90,7 +88,6 @@ function Form() {
 
     const validation = (val)=> {
         let errors= "";
-        let regex = /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i;
         if(!val){
             errors = "Please enter your Details";
         }
@@ -112,7 +109,7 @@ function Form() {
                                 name="radioChoice" 
                                 value="vehicleNumber" 
                                 onChange={handleRadioChoice}  
-                                checked={radioChoice=="vehicleNumber"}> 
+                                checked={radioChoice==="vehicleNumber"}> 
                            </input>
                            <label for="vehicleNumber">Vehicle Number</label>
                         </VehicleNumberRadio>
@@ -124,7 +121,7 @@ function Form() {
                                 name="radioChoice" 
                                 value="challanNumber" 
                                 onChange={handleRadioChoice} 
-                                checked={radioChoice == "challanNumber"}> 
+                                checked={radioChoice === "challanNumber"}> 
                            </input>
                            <label  for="challanNumber">Challan ID</label>
                         </ChallanNumberRadio>

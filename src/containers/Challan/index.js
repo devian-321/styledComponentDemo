@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
+// import { getPrevPage,getNextPage } from "./services.js";
 // import Pagenation from "./components/pagenation/index.js";
 // import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
-
 
 
         
@@ -29,22 +29,23 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         
         useEffect (()=>{
           axios
-              .get ('https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/unpaid-violation'
+              .get ('https://965522bd-97eb-46de-8b4a-dbb9caca99c4.mock.pstmn.io//dashboard/payment/unpaid-violation'
                     ,{params: {
                         licensePlaterNumber: id.toString(),
                         violationId : "CA3277798"
                     }})
               .then((res)=>{
                 setVehicleData(res.data);
-                // console.log(res.config.url)
                 setLoader(false);
                 setPayAmount(0);
               }).catch((error)=>{
-                // alert(error.message)
                 console.log(error);
               })
         },[]);
-
+        // useEffect(()=>{
+        //   setVehicleData(data);
+        //   setLoader(false);
+        // },[]);
         
 
           const getPrevPage =()=>{
@@ -61,7 +62,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
           setCurrentPage(currPage);
           if(paidViolation ===true){
             axios.get (
-              'https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?',
+              'https://965522bd-97eb-46de-8b4a-dbb9caca99c4.mock.pstmn.io//dashboard/payment/paid-violation?',
               {params: {
             licensePlaterNumber: id.toString(),
             violationId : "CA3277798",
@@ -69,12 +70,10 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         }}
             )
               .then((res)=>{
-                // setPaidChallan(res.data);
-                 setVehicleData(res.data);
+                 setVehicleData(res.data.content);
                 setCurrentPage(res.data.number);
                 setTotalPages(res.data.totalPages);  
                 setLoader(false);
-                // setPayAmount(0);
                 console.log(totalPages);
                 console.log(currPage);
                 console.log("here we go",paidChallanData);
@@ -83,7 +82,25 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 console.log(error);
               });
           }
+          if(paidViolation===false){
+            axios
+              .get ('https://965522bd-97eb-46de-8b4a-dbb9caca99c4.mock.pstmn.io//dashboard/payment/unpaid-violation'
+                    ,{params: {
+                        licensePlaterNumber: id.toString(),
+                        violationId : "CA3277798"
+                    }})
+              .then((res)=>{
+                setVehicleData(res.data);
+                setLoader(false);
+                setPayAmount(0);
+              }).catch((error)=>{
+                console.log(error);
+              })
+          }
+          
         },[paidViolation,currPage])
+
+        
 
 
 
@@ -187,6 +204,100 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         if(loader){
           return(<div>loading....</div>)
         }
+        if(paidViolation){
+          <MainContainer >
+
+          <HeadTag>
+            <VehicleNumberTag>
+              Vehicle Number:
+            </VehicleNumberTag>
+            <VehicleNumber>
+              {id}
+            </VehicleNumber>  
+          </HeadTag>
+          <PendingChallan>
+         <p> You have {vehicleData.length} pending challans</p>
+          </PendingChallan>
+          <Notice>
+            <p> NOTE:</p>
+            <p className="staticNote">Further failure to pay the challans within 90 days, will lead to further penalities, or your vehicles will be seized</p>
+          </Notice>
+
+          <HeadContainer>
+            <HeadSubContainer>
+            <nav>
+                <Ul>
+                    
+                    <LiU><A onClick={handleUnpaidChallan} to={`./`}>Unpaid Challan</A></LiU>
+                    <LiP><A onClick={handlePaidChallan} >Paid Challan</A></LiP>
+                </Ul>
+            </nav>
+            </HeadSubContainer>
+           {/* {paidViolation ===false?  
+           <PayButton >
+                pay {payAmount}
+            </PayButton>
+            : <div></div>
+            } */}
+            
+        
+        </HeadContainer>
+
+            <Table id="data-table">
+              <Thead>
+              <tr>
+                <th >Challan ID</th>
+                <th>Date</th>
+                <th>City</th>
+                <th>Area</th>
+                <th>Licence Number</th>
+                <th>Violation Type</th>
+                <th>Fine Amount</th>
+                <th>Due Date</th>
+                <th>Evidence</th>
+              </tr>
+              </Thead>
+              { paidChallanData.map((val, key) => {
+                return (
+                  <Tbody >
+                  <tr key={key}>
+                    <td>{val.violationId}</td>
+                    <td>{val.violationDate.slice(0,10)}</td>
+                    <td>{val.cityName}</td>
+                    <td>{val.regionName}</td>
+                    <td>{val.licensePlateNumber}</td>
+                    <td>{val.violationType}</td>
+                    <td>{val.fineAmount}</td>
+                   {/* {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> } */}
+                    <td><a href={val.imageUrl}>View</a></td>
+                  </tr>
+                  </Tbody>
+                )
+              })}
+            </Table>
+            
+              <HeadPContainer>
+            <SubContainer>
+                <Button onClick={getPrevPage}>
+                    Prev
+                </Button>
+                <PageNumber>
+                    {currPage}
+                </PageNumber>
+                <PageNumber onClick={getNextPage}>{currPage+1}</PageNumber>
+                <Button onClick={getNextPage}>
+                    Next
+                </Button>
+            </SubContainer>
+            <div>
+                <P>
+                    Page {currPage} of {totalPages}
+                </P>
+            </div>
+        </HeadPContainer>
+          </MainContainer>
+
+        }
 
         
 
@@ -289,14 +400,14 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
             {paidViolation ===true? 
               <HeadPContainer>
             <SubContainer>
-                <Button onClick={getPrevPage}>{/* <Button  onClick={getPrevPage}> */}
+                <Button onClick={getPrevPage}>
                     Prev
                 </Button>
                 <PageNumber>
                     {currPage}
                 </PageNumber>
                 <PageNumber>{currPage+1}</PageNumber>
-                <Button onClick={getNextPage}>{/* <Button  onClick={getNextPage}> */}
+                <Button onClick={getNextPage}>
                     Next
                 </Button>
             </SubContainer>
