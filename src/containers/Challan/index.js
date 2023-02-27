@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
 import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import { getPrevPage,getNextPage } from "./services.js";
 // import Pagenation from "./components/pagenation/index.js";
-// import $ from "jquery"
+import $ from "jquery"
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
 
 
@@ -16,6 +17,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const[paidViolation,setPaidViolation]= useState(false);
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
+    
 
         const [currPage,setCurrentPage] = useState(0)
         const [totalPages,setTotalPages] = useState(0);
@@ -36,6 +38,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     }})
               .then((res)=>{
                 setVehicleData(res.data);
+                console.log(res.data);
                 setLoader(false);
                 setPayAmount(0);
               }).catch((error)=>{
@@ -70,13 +73,13 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         }}
             )
               .then((res)=>{
-                 setVehicleData(res.data.content);
+                 setPaidChallan(res.data.content);
                 setCurrentPage(res.data.number);
                 setTotalPages(res.data.totalPages);  
                 setLoader(false);
                 console.log(totalPages);
                 console.log(currPage);
-                console.log("here we go",paidChallanData);
+                console.log("here we go",vehicleData);
               }).catch((error)=>{
                 alert(error.message)
                 console.log(error);
@@ -91,6 +94,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     }})
               .then((res)=>{
                 setVehicleData(res.data);
+                console.log(vehicleData)
                 setLoader(false);
                 setPayAmount(0);
               }).catch((error)=>{
@@ -99,55 +103,6 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
           }
           
         },[paidViolation,currPage])
-
-        
-
-
-
-
-        //new pagination
-
-
-        
-
-        // const usePaginationFetch = (getUrl)=>{
-        //   const [currPage,setCurrentPage] = useState(1)
-        //   const [totalPages,setTotalPages] = useState(0);
-        //   const [result,setResult] = useState([]);
-        //   const pageSize = 10;
-
-        //   useEffect(()=>{
-        //       setLoader(true);
-        //       axios.get(getUrl(currPage))
-        //           .then((res)=>{
-        //             setResult(res.data);
-        //             setLoader(false);
-        //             console.log(res.data);
-        //           }).catch((error) =>{
-        //             console.log(error);
-        //           });
-        //   },[currPage,getUrl]);
-
-        //   const getPrevPage =()=>{
-        //     setCurrentPage(Math.ceil(0,currPage-1));
-        // };
-    
-        // const getNextPage =()=>{
-        //     setCurrentPage(currPage+1);
-        // };
-
-        // return {result,currPage,setCurrentPage,getNextPage,getPrevPage,totalPages,setTotalPages};
-        // };
-
-        // const getUrl = (page)=>
-        //   `https://0445beac-1cf7-453e-9a65-1eb33fafb970.mock.pstmn.io//dashboard/payment/paid-violation?licensePlateNumber=KA27EE9417&violationid=CA3277798&pageNum=
-        //   ${page}`
-        
-
-
-        // const {result,currPage,getNextPage,getPrevPage,totalPages} = usePaginationFetch(
-        //   getUrl
-        // );
 
 
        
@@ -268,7 +223,6 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.licensePlateNumber}</td>
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
-                   {/* {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> } */}
                     <td><a href={val.imageUrl}>View</a></td>
                   </tr>
                   </Tbody>
@@ -391,7 +345,8 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
                    {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> }
-                    <td><a href={val.imageUrl}>View</a></td>
+                    <td>
+                    <Link to={`./View/${val.violationId}` }>  <button>View</button> </Link></td> 
                   </tr>
                   </Tbody>
                 )

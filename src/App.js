@@ -6,6 +6,7 @@ import Form from './containers/Form';
 // import UnpaidChallan from './containers/Unpaid Challan';
 // import Spinner from './components/Spinner';
 import Challan from './containers/Challan';
+import View from './containers/view';
 import "./fonts/Inter/Inter-SemiBold.ttf";
 import "./fonts/Inter/Inter-Regular.ttf";
 
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Form />} />
           <Route exact path='/Challan/:choice/:id' element={<Challan />} ></Route>
+          <Route exact  path='/Challan/:choice/:id/View/:violationId' element = {<View />}></Route>
           {/* <Route exact path='/unpaidChallan' element={<UnpaidChallan />} /> */}
           <Route default path='/' />
         </Routes>
