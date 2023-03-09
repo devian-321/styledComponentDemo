@@ -147,6 +147,7 @@ export const Thead = styled.thead`
     height: 63px;
     background: #D5D8DE;
     border-radius: 4px;
+    text-align: center;
 
     font-family: 'InterExtraLight';
     font-style: normal;
@@ -159,6 +160,7 @@ export const Tbody = styled.tbody`
     position: relative;
     width: 1279px;
     height: 63px;
+    text-align: center;
     /* padding-left: 10px; */
     /* background: #D5D8DE; */
     border-radius: 4px;
@@ -172,6 +174,16 @@ export const Tbody = styled.tbody`
 
 
 color: #2D2D32;
+
+`
+export const ChallanCheckbox = styled.input`
+    margin-left: 10px;
+    box-sizing: border-box;
+    width: 18px;
+    height: 16px;
+
+    border: 1px solid #000000;
+    border-radius: 2px;
 
 `
 

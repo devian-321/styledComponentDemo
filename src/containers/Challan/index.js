@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody} from './styled.js';
+import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody,ChallanCheckbox} from './styled.js';
 import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import { getPrevPage,getNextPage } from "./services.js";
-// import Pagenation from "./components/pagenation/index.js";
 import $ from "jquery"
+import View from "../view/index.js";
 import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./components/Header/styled";
+
 
 
         
@@ -21,6 +21,8 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
 
         const [currPage,setCurrentPage] = useState(0)
         const [totalPages,setTotalPages] = useState(0);
+
+        // const [isView,setView] = useState(false);
 
        
 
@@ -301,7 +303,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 {paidViolation === false ? 
                   <th >
                 <p>Select All</p>
-                <input name="select_all"
+                <ChallanCheckbox name="select_all"
                        value="1" 
                        type="checkbox"
                        checked={vehicleData.filter((vehicleId) => vehicleId?.isChecked!==true).length < 1}
@@ -329,7 +331,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     {paidViolation === false ? 
                       <td>
                    
-                      <input type="checkbox" 
+                      <ChallanCheckbox type="checkbox" 
                               value= "1"
                             name={val.violationId}
                             onChange={handleCheckbox}
@@ -346,7 +348,9 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.fineAmount}</td>
                    {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> }
                     <td>
-                    <Link to={`./View/${val.violationId}` }>  <button>View</button> </Link></td> 
+                    <Link to={`./View/${val.violationId}` }>  <button >View</button> </Link>
+                    </td> 
+                    {/* <View></View> */}
                   </tr>
                   </Tbody>
                 )

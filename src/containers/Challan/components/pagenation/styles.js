@@ -48,6 +48,10 @@ top: 890px; */
 export const Button = styled.button`
     width: 45px;
 height: 31px;
+background-color: transparent;
+background: #FFFFFF;
+border: 1px solid #DBDBDB;
+border-radius: 2px;
 /* left: 94px;
 top: 898px; */
 

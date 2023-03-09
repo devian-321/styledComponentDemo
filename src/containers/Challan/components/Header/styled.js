@@ -33,13 +33,13 @@ export const PayButton = styled.button`
     height: 45px;
 
     background: #1D2D4E;
-border-radius: 4px;
+    border-radius: 4px;
     color: white;
 
     font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
 `
 
 
@@ -78,6 +78,13 @@ list-style-type: none;
 `
 export const A = styled(Link)`
     text-decoration: none;
+    
+/* identical to box height */
+
+
+color: #2D2D32;
+
+
     :link{
     font-family: 'InterExtraLight';
     font-style: normal;
@@ -93,6 +100,9 @@ export const A = styled(Link)`
         color: #F58706;
         text-decoration: underline;
     }
+    /* :visited{
+        color: #F58706;
+    } */
     
     
 
