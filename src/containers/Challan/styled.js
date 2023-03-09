@@ -186,6 +186,19 @@ export const ChallanCheckbox = styled.input`
     border-radius: 2px;
 
 `
+export const ViewButton = styled.button`
+    background-color: transparent;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+border: 0px;
+/* identical to box height */
+
+
+color: #2663FF;
+`
 
 // export const SelectAll = styled.p`
 //     position: relative;

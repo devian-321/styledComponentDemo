@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody,ChallanCheckbox} from './styled.js';
+import {Table,VehicleNumberTag,VehicleNumber,PendingChallan,HeadTag,MainContainer,Notice,Thead,Tbody,ChallanCheckbox,ViewButton} from './styled.js';
 import { HeadPContainer,SubContainer,P,PageNumber,Button } from "./components/pagenation/styles";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -348,7 +348,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.fineAmount}</td>
                    {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> }
                     <td>
-                    <Link to={`./View/${val.violationId}` }>  <button >View</button> </Link>
+                    <Link to={`./View/${val.violationId}` }>  <ViewButton >View</ViewButton> </Link>
                     </td> 
                     {/* <View></View> */}
                   </tr>
