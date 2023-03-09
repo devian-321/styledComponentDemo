@@ -75,7 +75,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         }}
             )
               .then((res)=>{
-                 setPaidChallan(res.data.content);
+                 setVehicleData(res.data.content);
                 setCurrentPage(res.data.number);
                 setTotalPages(res.data.totalPages);  
                 setLoader(false);
@@ -87,7 +87,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                 console.log(error);
               });
           }
-          if(paidViolation===false){
+          else if(paidViolation===false){
             axios
               .get ('https://965522bd-97eb-46de-8b4a-dbb9caca99c4.mock.pstmn.io//dashboard/payment/unpaid-violation'
                     ,{params: {
@@ -96,6 +96,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     }})
               .then((res)=>{
                 setVehicleData(res.data);
+                setCurrentPage(0);
                 console.log(vehicleData)
                 setLoader(false);
                 setPayAmount(0);
@@ -346,7 +347,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.licensePlateNumber}</td>
                     <td>{val.violationType}</td>
                     <td>{val.fineAmount}</td>
-                   {paidViolation ===false?  <td>{val.dueDate.slice(0,10)}</td>: <td></td> }
+                   {paidViolation ===false?  <td>{val.dueDate}</td>: <td></td> }
                     <td>
                     <Link to={`./View/${val.violationId}` }>  <ViewButton >View</ViewButton> </Link>
                     </td> 
