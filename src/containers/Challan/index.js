@@ -17,6 +17,10 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
         const[paidViolation,setPaidViolation]= useState(false);
         const [loader,setLoader]=useState(true);
         const [payAmount,setPayAmount] = useState(0);
+
+        const url = "https://traffic-light-videos.s3.ap-south-1.amazonaws.com/frames/1/1/1/2556/2022/10/11/8/34/1-1-1-2556-2022-10-11-8-34-40-20171.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230120T102333Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAUOXUF53222GR23MD%2F20230120%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=dd22ad2678b73c41009a333ec1d52f31f440ae68afdd5dbba063bda0e95d60d6"
+        const [ ChallanImageUrl,setImageUrl] = useState(url);
+
     
 
         const [currPage,setCurrentPage] = useState(0)
@@ -152,6 +156,12 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
            }
           }
           return sum;
+        }
+
+        const handleView = (props)=>{
+          console.log(props);
+          setImageUrl(props.imageUrl)
+          // set  ImageUrl()
         }
 
 
@@ -349,7 +359,7 @@ import {LiU,LiP, HeadContainer ,HeadSubContainer,Ul,PayButton,A} from "./compone
                     <td>{val.fineAmount}</td>
                    {paidViolation ===false?  <td>{val.dueDate}</td>: <td></td> }
                     <td>
-                    <Link to={`./View/${val.violationId}` }>  <ViewButton >View</ViewButton> </Link>
+                    <Link to={`./View/${val.violationId}` } state = {{ChallanImageUrl:ChallanImageUrl}}>  <ViewButton >View</ViewButton> </Link>
                     </td> 
                     {/* <View></View> */}
                   </tr>
