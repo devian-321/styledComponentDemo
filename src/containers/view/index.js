@@ -1,18 +1,11 @@
 import axios from "axios";
 import React,{useEffect, useState} from "react";
-import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {ModalBackground,ModalMain,ModalHeading,ModalBody,ModalImage,ModalHeader,ModalBack, ModalCancel} from "./styles"
 
 function View(props){
-    const {violationId} = useParams();
-    const [image,setImage] = useState();
-    const location = useLocation();
-    console.log(props, " props");
-    console.log(location, " useLocation Hook");
-    const imageUrl = location.state?.ChallanImageUrl;
-    console.log(imageUrl)
-    // console.log(val, "val");
+    const imageUrl = props.imageUrl;
+    
 
     console.log(violationId);
 
