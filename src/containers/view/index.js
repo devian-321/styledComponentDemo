@@ -5,9 +5,9 @@ import {ModalBackground,ModalMain,ModalHeading,ModalBody,ModalImage,ModalHeader,
 
 function View(props){
     const imageUrl = props.imageUrl;
-    
 
-    console.log(violationId);
+
+    // console.log(violationId);
 
     useEffect(()=>{
         axios.get(imageUrl,{
@@ -19,7 +19,7 @@ function View(props){
                   ''
                 )
               )
-              setImage(base64);
+            //   setImage(base64);
         })
     },[])
     
@@ -42,7 +42,7 @@ function View(props){
 
                     </ModalBody>
                     <ModalImage>
-                        <img src={`data:;base64,${image}`}></img>
+                        {/* <img src={`data:;base64,${image}`}></img> */}
                     </ModalImage>
                 </ModalMain>
             </ModalBackground>
