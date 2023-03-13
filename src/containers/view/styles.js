@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+
+const handleColorType = color => {
+    switch (color) {
+      case "red":
+        return "color : #D7051E";
+      case "licenceNumber":
+        return "color : #3179E4";
+        case "challanStatus":
+            return "color: #28882C";
+        case "paymentStatus":
+            return "color: #F58706";
+
+      default:
+        return "#000000";
+    }
+  };
+
 export const ModalBackground = styled.div`
   /* position: fixed; */
   width: 100vw;
@@ -21,7 +38,7 @@ export const ModalMain = styled.div`
   margin-top: 45px;
   background: #ffffff;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: center; */
   flex-direction: column;
 `;
@@ -31,8 +48,22 @@ export const ModalHeader = styled.div`
   align-items: center;
   width: 80%;
   margin-top: 4%;
+  margin-left: 70px;
 `;
 
+export const ModalLine = styled.div`
+  width: 80%;
+  height: 0px;
+  border: 1px solid #dbdbdb;
+  margin-top: 8px;
+  margin-left: 70px;
+`;
+export const ModalSubHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-self: flex-start;
+`;
 export const ModalBack = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -40,6 +71,7 @@ export const ModalBack = styled.div`
   /* transform: matrix(-1, 0, 0, 1, 0, 0); */
   background-color: transparent;
 `;
+
 export const ModalHeading = styled.div`
   display: flex;
   justify-content: center;
@@ -56,13 +88,97 @@ export const ModalHeading = styled.div`
 
   color: #000000;
 `;
+
+export const ModalSubCancel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  padding-left: 80%;
+`;
+
 export const ModalCancel = styled.div`
   display: flex;
   justify-content: flex-end;
   align-self: flex-end;
   background-color: transparent;
+
 `;
 
-export const ModalBody = styled.div``;
+/// Header end
+
+export const ModalBody = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 70px;
+  margin-top: 10px;
+`;
+export const ModalSubBody1 = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  align-self: flex-start;
+  flex-direction: column;
+`;
+
+export const ModalBodyElement = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 30px;
+  
+  /* width: 50px; */
+ 
+
+`;
+export const ModalElementStat = styled.span`
+  position: relative;
+  width: 120px;
+  height: 17px;
+  /* left: 557px;
+    top: 94px; */
+  font-family: "InterExtraLight";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  /* line-height: 27px; */
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #808080;
+`;
+
+// export const ViolationType = styled(ModalElementStat)`
+//     width: 90px;
+// `
+
+
+export const ModalElementDyn = styled.span`
+  position: relative;
+  width: 90px;
+  height: 17px;
+  display: flex;
+  align-items: center; 
+  
+
+  font-family: "InterExtraLight";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+   ${({color}) => handleColorType(color)};
+  
+
+`;
+
+export const ModalSubBody2 = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  align-self: flex-end;
+  flex-direction: column;
+  margin-left: 50%;
+`;
 
 export const ModalImage = styled.div``;

@@ -383,9 +383,12 @@ function Challan() {
                     {" "}
                     <ViewButton>View</ViewButton>{" "}
                   </Link>
+                  {/* <ViewButton onClick={()=>setShowModal(true)}>View</ViewButton> */}
                 </td>
                 {/* <View></View> */}
               </tr>
+              {/* {showModal === false? <></>:
+                <View />} */}
             </Tbody>
           );
         })}
