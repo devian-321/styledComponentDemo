@@ -1,26 +1,25 @@
 import styled from "styled-components";
 
+const handleColorType = (color) => {
+  switch (color) {
+    case "red":
+      return "color : #D7051E";
+    case "licenceNumber":
+      return "color : #3179E4";
+    case "challanStatus":
+      return "color: #28882C";
+    case "paymentStatus":
+      return "color: #F58706";
 
-const handleColorType = color => {
-    switch (color) {
-      case "red":
-        return "color : #D7051E";
-      case "licenceNumber":
-        return "color : #3179E4";
-        case "challanStatus":
-            return "color: #28882C";
-        case "paymentStatus":
-            return "color: #F58706";
-
-      default:
-        return "#000000";
-    }
-  };
+    default:
+      return "#000000";
+  }
+};
 
 export const ModalBackground = styled.div`
   /* position: fixed; */
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   left: 0px;
   margin-top: 0px;
   padding-top: 0px;
@@ -82,6 +81,7 @@ export const ModalHeading = styled.div`
   font-size: 18px;
   line-height: 22px;
   margin-left: 30px;
+  width: fit-content;
   /* identical to box height */
 
   letter-spacing: -0.3px;
@@ -102,7 +102,6 @@ export const ModalCancel = styled.div`
   justify-content: flex-end;
   align-self: flex-end;
   background-color: transparent;
-
 `;
 
 /// Header end
@@ -126,10 +125,8 @@ export const ModalBodyElement = styled.div`
   /* justify-content: center; */
   align-items: center;
   margin-top: 30px;
-  
-  /* width: 50px; */
- 
 
+  /* width: 50px; */
 `;
 export const ModalElementStat = styled.span`
   position: relative;
@@ -153,23 +150,19 @@ export const ModalElementStat = styled.span`
 //     width: 90px;
 // `
 
-
 export const ModalElementDyn = styled.span`
   position: relative;
   width: 90px;
   height: 17px;
   display: flex;
-  align-items: center; 
-  
+  align-items: center;
 
   font-family: "InterExtraLight";
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-   ${({color}) => handleColorType(color)};
-  
-
+  ${({ color }) => handleColorType(color)};
 `;
 
 export const ModalSubBody2 = styled.div`
@@ -181,4 +174,20 @@ export const ModalSubBody2 = styled.div`
   margin-left: 50%;
 `;
 
-export const ModalImage = styled.div``;
+export const ModalImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  /* align-items: center; */
+  margin-top: 30px;
+`;
+export const Images = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+export const Img = styled.div`
+  display: flex;
+  align-self: flex-start;
+  width: 80%;
+  height: 438px;
+`;
