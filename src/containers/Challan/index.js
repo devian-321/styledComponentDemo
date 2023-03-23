@@ -67,6 +67,7 @@ function Challan() {
       .then((res) => {
         setVehicleData(res.data);
         console.log(res.data);
+        console.log(res.data.length);
         setLoader(false);
         setPayAmount(0);
       })
@@ -129,7 +130,9 @@ function Challan() {
         .then((res) => {
           setVehicleData(res.data);
           setCurrentPage(0);
+          setTotalPages(Math.ceil(res.data.length/10))
           console.log(vehicleData);
+          console.log(totalPages);
           setLoader(false);
           setPayAmount(0);
         })
