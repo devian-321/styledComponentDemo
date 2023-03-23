@@ -192,95 +192,95 @@ function Challan() {
   if (loader) {
     return <div>loading....</div>;
   }
-  if (paidViolation) {
-    <MainContainer>
-      <HeadTag>
-        <VehicleNumberTag>Vehicle Number:</VehicleNumberTag>
-        <VehicleNumber>{id}</VehicleNumber>
-      </HeadTag>
-      <PendingChallan>
-        <p> You have {vehicleData.length} pending challans</p>
-      </PendingChallan>
-      <Notice>
-        <p> NOTE:</p>
-        <p className="staticNote">
-          Further failure to pay the challans within 90 days, will lead to
-          further penalities, or your vehicles will be seized
-        </p>
-      </Notice>
+  // if (paidViolation) {
+  //   <MainContainer>
+  //     <HeadTag>
+  //       <VehicleNumberTag>Vehicle Number:</VehicleNumberTag>
+  //       <VehicleNumber>{id}</VehicleNumber>
+  //     </HeadTag>
+  //     <PendingChallan>
+  //       <p> You have {vehicleData.length} pending challans</p>
+  //     </PendingChallan>
+  //     <Notice>
+  //       <p> NOTE:</p>
+  //       <p className="staticNote">
+  //         Further failure to pay the challans within 90 days, will lead to
+  //         further penalities, or your vehicles will be seized
+  //       </p>
+  //     </Notice>
 
-      <HeadContainer>
-        <HeadSubContainer>
-          <nav>
-            <Ul>
-              <LiU>
-                <A onClick={handleUnpaidChallan} to={`./`}>
-                  Unpaid Challan
-                </A>
-              </LiU>
-              <LiP>
-                <A onClick={handlePaidChallan}>Paid Challan</A>
-              </LiP>
-            </Ul>
-          </nav>
-        </HeadSubContainer>
-        {/* {paidViolation ===false?  
-           <PayButton >
-                pay {payAmount}
-            </PayButton>
-            : <div></div>
-            } */}
-      </HeadContainer>
+  //     <HeadContainer>
+  //       <HeadSubContainer>
+  //         <nav>
+  //           <Ul>
+  //             <LiU>
+  //               <A onClick={handleUnpaidChallan} to={`./`}>
+  //                 Unpaid Challan
+  //               </A>
+  //             </LiU>
+  //             <LiP>
+  //               <A onClick={handlePaidChallan}>Paid Challan</A>
+  //             </LiP>
+  //           </Ul>
+  //         </nav>
+  //       </HeadSubContainer>
+  //       {/* {paidViolation ===false?  
+  //          <PayButton >
+  //               pay {payAmount}
+  //           </PayButton>
+  //           : <div></div>
+  //           } */}
+  //     </HeadContainer>
 
-      <Table id="data-table">
-        <Thead>
-          <tr>
-            <th>Challan ID</th>
-            <th>Date</th>
-            <th>City</th>
-            <th>Area</th>
-            <th>Licence Number</th>
-            <th>Violation Type</th>
-            <th>Fine Amount</th>
-            <th>Due Date</th>
-            <th>Evidence</th>
-          </tr>
-        </Thead>
-        {paidChallanData.map((val, key) => {
-          return (
-            <Tbody>
-              <tr key={key}>
-                <td>{val.violationId}</td>
-                <td>{val.violationDate.slice(0, 10)}</td>
-                <td>{val.cityName}</td>
-                <td>{val.regionName}</td>
-                <td>{val.licensePlateNumber}</td>
-                <td>{val.violationType}</td>
-                <td>{val.fineAmount}</td>
-                <td>
-                  <a href={val.imageUrl}>View</a>
-                </td>
-              </tr>
-            </Tbody>
-          );
-        })}
-      </Table>
+  //     <Table id="data-table">
+  //       <Thead>
+  //         <tr>
+  //           <th>Challan ID</th>
+  //           <th>Date</th>
+  //           <th>City</th>
+  //           <th>Area</th>
+  //           <th>Licence Number</th>
+  //           <th>Violation Type</th>
+  //           <th>Fine Amount</th>
+  //           <th>Due Date</th>
+  //           <th>Evidence</th>
+  //         </tr>
+  //       </Thead>
+  //       {paidChallanData.map((val, key) => {
+  //         return (
+  //           <Tbody>
+  //             <tr key={key}>
+  //               <td>{val.violationId}</td>
+  //               <td>{val.violationDate.slice(0, 10)}</td>
+  //               <td>{val.cityName}</td>
+  //               <td>{val.regionName}</td>
+  //               <td>{val.licensePlateNumber}</td>
+  //               <td>{val.violationType}</td>
+  //               <td>{val.fineAmount}</td>
+  //               <td>
+  //                 <a href={val.imageUrl}>View</a>
+  //               </td>
+  //             </tr>
+  //           </Tbody>
+  //         );
+  //       })}
+  //     </Table>
 
-      <HeadPContainer>
-        <SubContainer>
-          <Button onClick={getPrevPage}>Prev</Button>
-          <PageNumber>{currPage}</PageNumber>
-          <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
-          <Button onClick={getNextPage}>Next</Button>
-        </SubContainer>
-        <div>
-          <P>
-            Page {currPage} of {totalPages}
-          </P>
-        </div>
-      </HeadPContainer>
-    </MainContainer>;
-  }
+  //     <HeadPContainer>
+  //       <SubContainer>
+  //         <Button onClick={getPrevPage}>Prev</Button>
+  //         <PageNumber>{currPage}</PageNumber>
+  //         <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
+  //         <Button onClick={getNextPage}>Next</Button>
+  //       </SubContainer>
+  //       <div>
+  //         <P>
+  //           Page {currPage} of {totalPages}
+  //         </P>
+  //       </div>
+  //     </HeadPContainer>
+  //   </MainContainer>;
+  // }
 
   return (
     <MainContainer>
