@@ -127,6 +127,7 @@ function View(props) {
         </ModalBody>
         <ModalImage>
           <ReactPlayer url={imageUrl} width="85%" height="660px" />
+          
           <Images>
             <Img>
               <img src={dogPic} alt=" " />

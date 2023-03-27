@@ -396,7 +396,7 @@ function Challan() {
           );
         })}
       </Table>
-      {paidViolation === true ? (
+      
         <HeadPContainer>
           <SubContainer>
             <Button onClick={getPrevPage}>Prev</Button>
@@ -410,9 +410,7 @@ function Challan() {
             </P>
           </div>
         </HeadPContainer>
-      ) : (
-        <></>
-      )}
+      
     </MainContainer>
   );
 }
