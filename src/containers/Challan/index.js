@@ -31,16 +31,33 @@ import {
   HeadSubContainer,
   Ul,
   PayButton,
-  A,
+  A
 } from "./components/Header/styled";
 
 function Challan() {
   const [vehicleData, setVehicleData] = useState([]);
-  const [paidChallanData, setPaidChallan] = useState([]);
+  // const [paidChallanData, setPaidChallan] = useState([]);
   const [paidViolation, setPaidViolation] = useState(false);
   const [loader, setLoader] = useState(true);
   const [payAmount, setPayAmount] = useState(0);
+
+
   const [showModal,setShowModal] = useState(false);
+  const [modalInfo,setModalInfo] = useState([]);
+  const [show,setShow] = useState(false);
+
+  const rowEvent = (row)=>{
+    console.log(row);
+  }
+  const handleClose = ()=>setShow(false);
+  const handleShow = ()=>setShow(true);
+  const toggleTrueFalse = ()=>{
+    setShowModal(handleShow);
+  }
+  const ModalContent = ()=>{
+
+  }
+
 
   const url =
     "https://traffic-light-videos.s3.ap-south-1.amazonaws.com/frames/1/1/1/2556/2022/10/11/8/34/1-1-1-2556-2022-10-11-8-34-40-20171.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230120T102333Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAUOXUF53222GR23MD%2F20230120%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=dd22ad2678b73c41009a333ec1d52f31f440ae68afdd5dbba063bda0e95d60d6";
@@ -192,95 +209,7 @@ function Challan() {
   if (loader) {
     return <div>loading....</div>;
   }
-  // if (paidViolation) {
-  //   <MainContainer>
-  //     <HeadTag>
-  //       <VehicleNumberTag>Vehicle Number:</VehicleNumberTag>
-  //       <VehicleNumber>{id}</VehicleNumber>
-  //     </HeadTag>
-  //     <PendingChallan>
-  //       <p> You have {vehicleData.length} pending challans</p>
-  //     </PendingChallan>
-  //     <Notice>
-  //       <p> NOTE:</p>
-  //       <p className="staticNote">
-  //         Further failure to pay the challans within 90 days, will lead to
-  //         further penalities, or your vehicles will be seized
-  //       </p>
-  //     </Notice>
-
-  //     <HeadContainer>
-  //       <HeadSubContainer>
-  //         <nav>
-  //           <Ul>
-  //             <LiU>
-  //               <A onClick={handleUnpaidChallan} to={`./`}>
-  //                 Unpaid Challan
-  //               </A>
-  //             </LiU>
-  //             <LiP>
-  //               <A onClick={handlePaidChallan}>Paid Challan</A>
-  //             </LiP>
-  //           </Ul>
-  //         </nav>
-  //       </HeadSubContainer>
-  //       {/* {paidViolation ===false?  
-  //          <PayButton >
-  //               pay {payAmount}
-  //           </PayButton>
-  //           : <div></div>
-  //           } */}
-  //     </HeadContainer>
-
-  //     <Table id="data-table">
-  //       <Thead>
-  //         <tr>
-  //           <th>Challan ID</th>
-  //           <th>Date</th>
-  //           <th>City</th>
-  //           <th>Area</th>
-  //           <th>Licence Number</th>
-  //           <th>Violation Type</th>
-  //           <th>Fine Amount</th>
-  //           <th>Due Date</th>
-  //           <th>Evidence</th>
-  //         </tr>
-  //       </Thead>
-  //       {paidChallanData.map((val, key) => {
-  //         return (
-  //           <Tbody>
-  //             <tr key={key}>
-  //               <td>{val.violationId}</td>
-  //               <td>{val.violationDate.slice(0, 10)}</td>
-  //               <td>{val.cityName}</td>
-  //               <td>{val.regionName}</td>
-  //               <td>{val.licensePlateNumber}</td>
-  //               <td>{val.violationType}</td>
-  //               <td>{val.fineAmount}</td>
-  //               <td>
-  //                 <a href={val.imageUrl}>View</a>
-  //               </td>
-  //             </tr>
-  //           </Tbody>
-  //         );
-  //       })}
-  //     </Table>
-
-  //     <HeadPContainer>
-  //       <SubContainer>
-  //         <Button onClick={getPrevPage}>Prev</Button>
-  //         <PageNumber>{currPage}</PageNumber>
-  //         <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
-  //         <Button onClick={getNextPage}>Next</Button>
-  //       </SubContainer>
-  //       <div>
-  //         <P>
-  //           Page {currPage} of {totalPages}
-  //         </P>
-  //       </div>
-  //     </HeadPContainer>
-  //   </MainContainer>;
-  // }
+  
 
   return (
     <MainContainer>
@@ -304,9 +233,11 @@ function Challan() {
           <nav>
             <Ul>
               <LiU>
-                <A onClick={handleUnpaidChallan} to={`./`}>
+                
+                <A onClick={handleUnpaidChallan} to={`./`} >
                   Unpaid Challan
                 </A>
+                
               </LiU>
               <LiP>
                 <A onClick={handlePaidChallan}>Paid Challan</A>
@@ -384,7 +315,7 @@ function Challan() {
                     state={{ ChallanImageUrl: ChallanImageUrl }}
                   >
                     {" "}
-                    <ViewButton>View</ViewButton>{" "}
+                    <ViewButton >View</ViewButton>{" "}
                   </Link>
                   {/* <ViewButton onClick={()=>setShowModal(true)}>View</ViewButton> */}
                 </td>
@@ -401,7 +332,7 @@ function Challan() {
           <SubContainer>
             <Button onClick={getPrevPage}>Prev</Button>
             <PageNumber>{currPage}</PageNumber>
-            <PageNumber>{currPage + 1}</PageNumber>
+            <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
             <Button onClick={getNextPage}>Next</Button>
           </SubContainer>
           <div>
@@ -412,6 +343,7 @@ function Challan() {
         </HeadPContainer>
       
     </MainContainer>
+    // { show ===true?<View />: <></>}
   );
 }
 

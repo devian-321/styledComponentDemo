@@ -189,6 +189,7 @@ export const ChallanCheckbox = styled.input`
 export const ViewButton = styled.button`
     background-color: transparent;
     font-family: 'Inter';
+    text-decoration: none !important;
 font-style: normal;
 font-weight: 500;
 font-size: 12px;

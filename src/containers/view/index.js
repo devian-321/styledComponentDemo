@@ -26,6 +26,7 @@ import {
 } from "./styles";
 
 function View(props) {
+    // console.log(props);
   const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
   // const imageUrl = props.imageUrl;
 
