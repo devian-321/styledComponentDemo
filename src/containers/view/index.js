@@ -28,24 +28,7 @@ import {
 function View(props) {
     // console.log(props);
   const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
-  // const imageUrl = props.imageUrl;
-
-  // // console.log(violationId);
-
-  // useEffect(()=>{
-  //     axios.get(imageUrl,{
-  //         responseType: "arraybuffer"
-  //     }).then((res)=>{
-  //         const base64 = btoa(
-  //             new Uint8Array(res.data).reduce(
-  //               (data, byte) => data + String.fromCharCode(byte),
-  //               ''
-  //             )
-  //           )
-  //         //   setImage(base64);
-  //     })
-  // },[])
-
+  
   return (
     <ModalBackground>
       <ModalMain>

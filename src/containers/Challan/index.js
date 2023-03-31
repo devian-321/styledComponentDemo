@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ReactPlayer from "react-player";
+import dogPic from "../view/dog.png";
 import {
   Table,
   VehicleNumberTag,
@@ -21,9 +23,9 @@ import {
   Button,
 } from "./components/pagenation/styles";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import $ from "jquery";
-import View from "../view/index.js";
+// import { Link } from "react-router-dom";
+// import $ from "jquery";
+// import View from "../view/index.js";
 import {
   LiU,
   LiP,
@@ -33,6 +35,35 @@ import {
   PayButton,
   A
 } from "./components/Header/styled";
+
+
+
+
+// import ReactPlayer from "react-player";
+// import dogPic from "./dog.png";
+import {
+  ModalBackground,
+  ModalMain,
+  ModalHeading,
+  ModalBody,
+  ModalImage,
+  ModalHeader,
+  ModalBack,
+  ModalCancel,
+  ModalSubHeader,
+  ModalSubCancel,
+  ModalLine,
+  ModalSubBody1,
+  ModalSubBody2,
+  ModalBodyElement,
+  ModalElementStat,
+  ModalElementDyn,
+  Images,
+  Img,
+  //   ViolationType
+} from "../view/styles";
+
+
 
 function Challan() {
   const [vehicleData, setVehicleData] = useState([]);
@@ -206,12 +237,114 @@ function Challan() {
     // set  ImageUrl()
   };
 
+  const View = ()=> {
+    // console.log(props);
+  const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
+  
+  return (
+    <ModalBackground show={show} onHide = {handleClose}>
+      <ModalMain>
+        {/* Header  */}
+        <ModalHeader>
+          <ModalSubHeader>
+            <ModalBack>
+              <button>back</button>
+            </ModalBack>
+            <ModalHeading>Challan Details</ModalHeading>
+          </ModalSubHeader>
+
+          <ModalSubCancel>
+            <ModalCancel>X</ModalCancel>
+          </ModalSubCancel>
+        </ModalHeader>
+
+        {/* Header end */}
+        <ModalLine />
+
+        <ModalBody>
+          <ModalSubBody1>
+            <ModalBodyElement>
+              <ModalElementStat>Challan ID:</ModalElementStat>
+              <ModalElementDyn>403097</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Violation Type :</ModalElementStat>
+              <ModalElementDyn color="red">No Helmet</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Licence Number:</ModalElementStat>
+              <ModalElementDyn color="licenceNumber">
+                KA27EE9417
+              </ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Penalty :</ModalElementStat>
+              <ModalElementDyn>1000</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Date:</ModalElementStat>
+              <ModalElementDyn>13 Dec 2022</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Time:</ModalElementStat>
+              <ModalElementDyn>05:12PM</ModalElementDyn>
+            </ModalBodyElement>
+          </ModalSubBody1>
+          <ModalSubBody2>
+            <ModalBodyElement>
+              <ModalElementStat>Challan status :</ModalElementStat>
+              <ModalElementDyn color="challanStatus">Approved</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Approver:</ModalElementStat>
+              <ModalElementDyn>Kiran Kulkarni</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>City :</ModalElementStat>
+              <ModalElementDyn>Hubli</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Area :</ModalElementStat>
+              <ModalElementDyn>Vidya Nagar</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Junction:</ModalElementStat>
+              <ModalElementDyn>BVB</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>Payment status:</ModalElementStat>
+              <ModalElementDyn color="paymentStatus">Not paid</ModalElementDyn>
+            </ModalBodyElement>
+            <ModalBodyElement>
+              <ModalElementStat>IPC section:</ModalElementStat>
+              <ModalElementDyn>129</ModalElementDyn>
+            </ModalBodyElement>
+          </ModalSubBody2>
+        </ModalBody>
+        <ModalImage>
+          <ReactPlayer url={imageUrl} width="85%" height="660px" />
+          
+          <Images>
+            <Img>
+              <img src={dogPic} alt=" " />
+            </Img>
+            <Img>
+              <img src={dogPic} alt=" " />
+            </Img>
+          </Images>
+        </ModalImage>
+      </ModalMain>
+    </ModalBackground>
+  );
+}
+
   if (loader) {
     return <div>loading....</div>;
   }
   
 
   return (
+    
     <MainContainer>
       <HeadTag>
         <VehicleNumberTag>Vehicle Number:</VehicleNumberTag>
@@ -310,14 +443,14 @@ function Challan() {
                 <td>{val.fineAmount}</td>
                 {paidViolation === false ? <td>{val.dueDate}</td> : <td></td>}
                 <td>
-                  <Link
+                  {/* <Link
                     to={`./View/${val.violationId}`}
                     state={{ ChallanImageUrl: ChallanImageUrl }}
                   >
                     {" "}
                     <ViewButton >View</ViewButton>{" "}
-                  </Link>
-                  {/* <ViewButton onClick={()=>setShowModal(true)}>View</ViewButton> */}
+                  </Link> */}
+                  <ViewButton onClick={()=>setShowModal(true)}>View</ViewButton>
                 </td>
                 {/* <View></View> */}
               </tr>
@@ -341,9 +474,9 @@ function Challan() {
             </P>
           </div>
         </HeadPContainer>
+        {showModal === true? <View></View>:null}
       
     </MainContainer>
-    // { show ===true?<View />: <></>}
   );
 }
 
