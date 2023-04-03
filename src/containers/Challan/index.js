@@ -23,9 +23,6 @@ import {
   Button,
 } from "./components/pagenation/styles";
 import axios from "axios";
-// import { Link } from "react-router-dom";
-// import $ from "jquery";
-// import View from "../view/index.js";
 import {
   LiU,
   LiP,
@@ -33,16 +30,11 @@ import {
   HeadSubContainer,
   Ul,
   PayButton,
-  A
+  A,
 } from "./components/Header/styled";
 
-
-
-
-// import ReactPlayer from "react-player";
-// import dogPic from "./dog.png";
 import {
-  ModalBackground,
+  ModalWrapper,
   ModalMain,
   ModalHeading,
   ModalBody,
@@ -63,32 +55,28 @@ import {
   //   ViolationType
 } from "../view/styles";
 
-
-
 function Challan() {
   const [vehicleData, setVehicleData] = useState([]);
-  // const [paidChallanData, setPaidChallan] = useState([]);
   const [paidViolation, setPaidViolation] = useState(false);
   const [loader, setLoader] = useState(true);
   const [payAmount, setPayAmount] = useState(0);
 
+  const [showModal, setShowModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState([]);
+  const [show, setShow] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
 
-  const [showModal,setShowModal] = useState(false);
-  const [modalInfo,setModalInfo] = useState([]);
-  const [show,setShow] = useState(false);
+  // const rowEvent = (row)=>{
+  //   onClick: (e,row)=>{
+  //     console.log(row);
+  //   }
 
-  const rowEvent = (row)=>{
-    console.log(row);
-  }
-  const handleClose = ()=>setShow(false);
-  const handleShow = ()=>setShow(true);
-  const toggleTrueFalse = ()=>{
+  // }
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+  const toggleTrueFalse = () => {
     setShowModal(handleShow);
-  }
-  const ModalContent = ()=>{
-
-  }
-
+  };
 
   const url =
     "https://traffic-light-videos.s3.ap-south-1.amazonaws.com/frames/1/1/1/2556/2022/10/11/8/34/1-1-1-2556-2022-10-11-8-34-40-20171.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230120T102333Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAUOXUF53222GR23MD%2F20230120%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=dd22ad2678b73c41009a333ec1d52f31f440ae68afdd5dbba063bda0e95d60d6";
@@ -123,10 +111,6 @@ function Challan() {
         console.log(error);
       });
   }, []);
-  // useEffect(()=>{
-  //   setVehicleData(data);
-  //   setLoader(false);
-  // },[]);
 
   const getPrevPage = () => {
     setCurrentPage(Math.ceil(0, currPage));
@@ -178,7 +162,7 @@ function Challan() {
         .then((res) => {
           setVehicleData(res.data);
           setCurrentPage(0);
-          setTotalPages(Math.ceil(res.data.length/10))
+          setTotalPages(Math.ceil(res.data.length / 10));
           console.log(vehicleData);
           console.log(totalPages);
           setLoader(false);
@@ -237,114 +221,115 @@ function Challan() {
     // set  ImageUrl()
   };
 
-  const View = ()=> {
-    // console.log(props);
-  const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
-  
-  return (
-    <ModalBackground show={show} onHide = {handleClose}>
-      <ModalMain>
-        {/* Header  */}
-        <ModalHeader>
-          <ModalSubHeader>
-            <ModalBack>
-              <button>back</button>
-            </ModalBack>
-            <ModalHeading>Challan Details</ModalHeading>
-          </ModalSubHeader>
+  const View = () => {
+    const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
 
-          <ModalSubCancel>
-            <ModalCancel>X</ModalCancel>
-          </ModalSubCancel>
-        </ModalHeader>
+    return (
+      <ModalWrapper onClick={handleClose}>
+        <ModalMain>
+          <ModalHeader>
+            <ModalSubHeader>
+              <ModalBack>
+                <button onClick={handleClose}>back</button>
+              </ModalBack>
+              <ModalHeading>Challan Details</ModalHeading>
+            </ModalSubHeader>
 
-        {/* Header end */}
-        <ModalLine />
+            <ModalSubCancel>
+              <ModalCancel>
+                <button onClick={handleClose}>X</button>
+              </ModalCancel>
+            </ModalSubCancel>
+          </ModalHeader>
 
-        <ModalBody>
-          <ModalSubBody1>
-            <ModalBodyElement>
-              <ModalElementStat>Challan ID:</ModalElementStat>
-              <ModalElementDyn>403097</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Violation Type :</ModalElementStat>
-              <ModalElementDyn color="red">No Helmet</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Licence Number:</ModalElementStat>
-              <ModalElementDyn color="licenceNumber">
-                KA27EE9417
-              </ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Penalty :</ModalElementStat>
-              <ModalElementDyn>1000</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Date:</ModalElementStat>
-              <ModalElementDyn>13 Dec 2022</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Time:</ModalElementStat>
-              <ModalElementDyn>05:12PM</ModalElementDyn>
-            </ModalBodyElement>
-          </ModalSubBody1>
-          <ModalSubBody2>
-            <ModalBodyElement>
-              <ModalElementStat>Challan status :</ModalElementStat>
-              <ModalElementDyn color="challanStatus">Approved</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Approver:</ModalElementStat>
-              <ModalElementDyn>Kiran Kulkarni</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>City :</ModalElementStat>
-              <ModalElementDyn>Hubli</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Area :</ModalElementStat>
-              <ModalElementDyn>Vidya Nagar</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Junction:</ModalElementStat>
-              <ModalElementDyn>BVB</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>Payment status:</ModalElementStat>
-              <ModalElementDyn color="paymentStatus">Not paid</ModalElementDyn>
-            </ModalBodyElement>
-            <ModalBodyElement>
-              <ModalElementStat>IPC section:</ModalElementStat>
-              <ModalElementDyn>129</ModalElementDyn>
-            </ModalBodyElement>
-          </ModalSubBody2>
-        </ModalBody>
-        <ModalImage>
-          <ReactPlayer url={imageUrl} width="85%" height="660px" />
-          
-          <Images>
-            <Img>
-              <img src={dogPic} alt=" " />
-            </Img>
-            <Img>
-              <img src={dogPic} alt=" " />
-            </Img>
-          </Images>
-        </ModalImage>
-      </ModalMain>
-    </ModalBackground>
-  );
-}
+          <ModalLine />
+
+          <ModalBody>
+            <ModalSubBody1>
+              <ModalBodyElement>
+                <ModalElementStat>Challan ID:</ModalElementStat>
+                <ModalElementDyn>403097</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Violation Type :</ModalElementStat>
+                <ModalElementDyn color="red">No Helmet</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Licence Number:</ModalElementStat>
+                <ModalElementDyn color="licenceNumber">
+                  KA27EE9417
+                </ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Penalty :</ModalElementStat>
+                <ModalElementDyn>1000</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Date:</ModalElementStat>
+                <ModalElementDyn>13 Dec 2022</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Time:</ModalElementStat>
+                <ModalElementDyn>05:12PM</ModalElementDyn>
+              </ModalBodyElement>
+            </ModalSubBody1>
+            <ModalSubBody2>
+              <ModalBodyElement>
+                <ModalElementStat>Challan status :</ModalElementStat>
+                <ModalElementDyn color="challanStatus">
+                  Approved
+                </ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Approver:</ModalElementStat>
+                <ModalElementDyn>Kiran Kulkarni</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>City :</ModalElementStat>
+                <ModalElementDyn>Hubli</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Area :</ModalElementStat>
+                <ModalElementDyn>Vidya Nagar</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Junction:</ModalElementStat>
+                <ModalElementDyn>BVB</ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>Payment status:</ModalElementStat>
+                <ModalElementDyn color="paymentStatus">
+                  Not paid
+                </ModalElementDyn>
+              </ModalBodyElement>
+              <ModalBodyElement>
+                <ModalElementStat>IPC section:</ModalElementStat>
+                <ModalElementDyn>129</ModalElementDyn>
+              </ModalBodyElement>
+            </ModalSubBody2>
+          </ModalBody>
+          <ModalImage>
+            <ReactPlayer url={imageUrl} width="85%" height="660px" />
+
+            <Images>
+              <Img>
+                <img src={dogPic} alt=" " />
+              </Img>
+              <Img>
+                <img src={dogPic} alt=" " />
+              </Img>
+            </Images>
+          </ModalImage>
+        </ModalMain>
+      </ModalWrapper>
+    );
+  };
 
   if (loader) {
     return <div>loading....</div>;
   }
-  
 
   return (
-    
     <MainContainer>
       <HeadTag>
         <VehicleNumberTag>Vehicle Number:</VehicleNumberTag>
@@ -366,11 +351,9 @@ function Challan() {
           <nav>
             <Ul>
               <LiU>
-                
-                <A onClick={handleUnpaidChallan} to={`./`} >
+                <A onClick={handleUnpaidChallan} to={`./`}>
                   Unpaid Challan
                 </A>
-                
               </LiU>
               <LiP>
                 <A onClick={handlePaidChallan}>Paid Challan</A>
@@ -443,39 +426,31 @@ function Challan() {
                 <td>{val.fineAmount}</td>
                 {paidViolation === false ? <td>{val.dueDate}</td> : <td></td>}
                 <td>
-                  {/* <Link
-                    to={`./View/${val.violationId}`}
-                    state={{ ChallanImageUrl: ChallanImageUrl }}
-                  >
-                    {" "}
-                    <ViewButton >View</ViewButton>{" "}
-                  </Link> */}
-                  <ViewButton onClick={()=>setShowModal(true)}>View</ViewButton>
+                  <ViewButton onClick={() => setShowModal(true)}>
+                    View
+                  </ViewButton>
                 </td>
-                {/* <View></View> */}
               </tr>
-              {/* {showModal === false? <></>:
-                <View />} */}
             </Tbody>
           );
         })}
       </Table>
-      
-        <HeadPContainer>
-          <SubContainer>
-            <Button onClick={getPrevPage}>Prev</Button>
-            <PageNumber>{currPage}</PageNumber>
-            <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
-            <Button onClick={getNextPage}>Next</Button>
-          </SubContainer>
-          <div>
-            <P>
-              Page {currPage} of {totalPages}
-            </P>
-          </div>
-        </HeadPContainer>
-        {showModal === true? <View></View>:null}
-      
+
+      <HeadPContainer>
+        <SubContainer>
+          <Button onClick={getPrevPage}>Prev</Button>
+          <PageNumber>{currPage}</PageNumber>
+          <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
+          <Button onClick={getNextPage}>Next</Button>
+        </SubContainer>
+        <div>
+          <P>
+            Page {currPage} of {totalPages}
+          </P>
+        </div>
+      </HeadPContainer>
+
+      {showModal && <View />}
     </MainContainer>
   );
 }

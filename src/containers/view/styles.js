@@ -16,13 +16,14 @@ const handleColorType = (color) => {
   }
 };
 
-export const ModalBackground = styled.div`
-  /* position: fixed; */
-  width: 100vw;
-  height: 100%;
+export const ModalWrapper = styled.div`
+  position: fixed;
+  /* width: 100vw;
+  height: 100%; */
   left: 0px;
   margin-top: 0px;
-  padding-top: 0px;
+  right: 0px;
+  bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

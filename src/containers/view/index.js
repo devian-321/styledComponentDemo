@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import dogPic from "./dog.png";
 import {
-  ModalBackground,
+  ModalWrapper,
   ModalMain,
   ModalHeading,
   ModalBody,
@@ -30,7 +30,7 @@ function View(props) {
   const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
   
   return (
-    <ModalBackground>
+    <ModalWrapper>
       <ModalMain>
         {/* Header  */}
         <ModalHeader>
@@ -122,7 +122,7 @@ function View(props) {
           </Images>
         </ModalImage>
       </ModalMain>
-    </ModalBackground>
+    </ModalWrapper>
   );
 }
 
