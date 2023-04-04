@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import dogPic from "../view/dog.png";
+import dogPic from "../view/images/dog.png";
+import first from "../view/images/first.jpg";
+import second from "../view/images/second.jpg";
+import third from "../view/images/third.jpg";
+import forth from "../view/images/forth.jpg";
+import $ from "jquery";
+import { imageData } from "./components/canvas/data";
+
 import {
   Table,
   VehicleNumberTag,
@@ -51,7 +58,7 @@ import {
   ModalElementStat,
   ModalElementDyn,
   Images,
-  Img,
+  Img,Img2
   //   ViolationType
 } from "../view/styles";
 
@@ -225,7 +232,7 @@ function Challan() {
     const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
 
     return (
-      <ModalWrapper onClick={handleClose}>
+      <ModalWrapper >
         <ModalMain>
           <ModalHeader>
             <ModalSubHeader>
@@ -313,11 +320,11 @@ function Challan() {
 
             <Images>
               <Img>
-                <img src={dogPic} alt=" " />
+                <img src={first} alt=" " width="100%"/>
               </Img>
-              <Img>
-                <img src={dogPic} alt=" " />
-              </Img>
+              <Img2>
+                <img src={first} alt=" "  width="100%"/>
+              </Img2>
             </Images>
           </ModalImage>
         </ModalMain>
@@ -426,9 +433,7 @@ function Challan() {
                 <td>{val.fineAmount}</td>
                 {paidViolation === false ? <td>{val.dueDate}</td> : <td></td>}
                 <td>
-                  <ViewButton onClick={() => setShowModal(true)}>
-                    View
-                  </ViewButton>
+                  <ViewButton onClick={handleShow}>View</ViewButton>
                 </td>
               </tr>
             </Tbody>

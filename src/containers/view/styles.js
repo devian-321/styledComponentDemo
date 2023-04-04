@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import first from "./images/first.jpg"
+import second from "./images/second.jpg"
+import $ from 'jquery'
+
 
 const handleColorType = (color) => {
   switch (color) {
@@ -22,6 +26,7 @@ export const ModalWrapper = styled.div`
   height: 100%; */
   left: 0px;
   margin-top: 0px;
+  padding-top: 0px;
   right: 0px;
   bottom: 0px;
   display: flex;
@@ -31,6 +36,11 @@ export const ModalWrapper = styled.div`
 
   background: rgba(0, 0, 0, 0.44);
 `;
+export const ModalContainer = styled.div`
+    display: flex;
+  justify-content: center;
+  align-items: center;
+`
 export const ModalMain = styled.div`
   position: relative;
   width: 90vw;
@@ -183,12 +193,24 @@ export const ModalImage = styled.div`
   margin-top: 30px;
 `;
 export const Images = styled.div`
+width: 85%;
+/* position: relative; */
+/* flex-direction: row; */
   display: flex;
   margin-top: 20px;
 `;
 export const Img = styled.div`
   display: flex;
   align-self: flex-start;
-  width: 80%;
+  width: 49%;
+  /* background-image: url(${first}); */
   height: 438px;
+`;
+export const Img2 = styled.div`
+  display: flex;
+  align-self: flex-start;
+  width: 49%;
+  margin-left: 2%;
+  height: 438px;
+  /* margin-left: 5%; */
 `;

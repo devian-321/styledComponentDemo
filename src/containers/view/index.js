@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import dogPic from "./dog.png";
+import dogPic from "./images/dog.png";
 import {
   ModalWrapper,
   ModalMain,
