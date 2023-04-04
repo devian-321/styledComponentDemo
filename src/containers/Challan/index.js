@@ -70,7 +70,7 @@ function Challan() {
 
   const [showModal, setShowModal] = useState(false);
   const [modalInfo, setModalInfo] = useState([]);
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
 
   // const rowEvent = (row)=>{
@@ -80,10 +80,14 @@ function Challan() {
 
   // }
   const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-  const toggleTrueFalse = () => {
-    setShowModal(handleShow);
+  const handleShow = (info) => {
+      setShowModal(true);
+      setModalInfo(info);
+      console.log(info);
   };
+  // const toggleTrueFalse = () => {
+  //   setShowModal(handleShow);
+  // };
 
   const url =
     "https://traffic-light-videos.s3.ap-south-1.amazonaws.com/frames/1/1/1/2556/2022/10/11/8/34/1-1-1-2556-2022-10-11-8-34-40-20171.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230120T102333Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAUOXUF53222GR23MD%2F20230120%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=dd22ad2678b73c41009a333ec1d52f31f440ae68afdd5dbba063bda0e95d60d6";
@@ -255,25 +259,25 @@ function Challan() {
             <ModalSubBody1>
               <ModalBodyElement>
                 <ModalElementStat>Challan ID:</ModalElementStat>
-                <ModalElementDyn>403097</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.violationId}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Violation Type :</ModalElementStat>
-                <ModalElementDyn color="red">No Helmet</ModalElementDyn>
+                <ModalElementDyn color="red">{modalInfo.violationType}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Licence Number:</ModalElementStat>
                 <ModalElementDyn color="licenceNumber">
-                  KA27EE9417
+                  {modalInfo.licensePlateNumber}
                 </ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Penalty :</ModalElementStat>
-                <ModalElementDyn>1000</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.fineAmount}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Date:</ModalElementStat>
-                <ModalElementDyn>13 Dec 2022</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.violationDate.slice(0, 10)}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Time:</ModalElementStat>
@@ -293,20 +297,20 @@ function Challan() {
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>City :</ModalElementStat>
-                <ModalElementDyn>Hubli</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.cityName}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Area :</ModalElementStat>
-                <ModalElementDyn>Vidya Nagar</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.regionName}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Junction:</ModalElementStat>
-                <ModalElementDyn>BVB</ModalElementDyn>
+                <ModalElementDyn>{modalInfo.intersectionName}</ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Payment status:</ModalElementStat>
                 <ModalElementDyn color="paymentStatus">
-                  Not paid
+                  {paidViolation === true? "Paid":"Not Paid"}
                 </ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
@@ -433,7 +437,7 @@ function Challan() {
                 <td>{val.fineAmount}</td>
                 {paidViolation === false ? <td>{val.dueDate}</td> : <td></td>}
                 <td>
-                  <ViewButton onClick={handleShow}>View</ViewButton>
+                  <ViewButton onClick={(e)=>{handleShow(val)}}>View</ViewButton>
                 </td>
               </tr>
             </Tbody>
