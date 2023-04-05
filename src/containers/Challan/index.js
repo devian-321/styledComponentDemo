@@ -61,6 +61,7 @@ import {
   Img,Img2
   //   ViolationType
 } from "../view/styles";
+import VideoPlayer from "./components/canvas";
 
 function Challan() {
   const [vehicleData, setVehicleData] = useState([]);
@@ -332,6 +333,7 @@ function Challan() {
             </Images>
           </ModalImage>
         </ModalMain>
+        <VideoPlayer challanInfo={modalInfo.violationId}/>
       </ModalWrapper>
     );
   };
