@@ -21,9 +21,9 @@ const handleColorType = (color) => {
 };
 
 export const ModalWrapper = styled.div`
-  position: fixed;
-  /* width: 100vw;
-  height: 100%; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
   left: 0px;
   margin-top: 0px;
   padding-top: 0px;
