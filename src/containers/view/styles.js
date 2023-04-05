@@ -197,7 +197,7 @@ width: 85%;
 /* position: relative; */
 /* flex-direction: row; */
   display: flex;
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 export const Img = styled.div`
   display: flex;

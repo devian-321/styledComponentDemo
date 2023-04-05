@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import dogPic from "../view/images/dog.png";
@@ -227,11 +227,18 @@ function Challan() {
     return sum;
   };
 
-  const handleView = (props) => {
-    console.log(props);
-    setImageUrl(props.imageUrl);
-    // set  ImageUrl()
-  };
+  // video player data
+
+
+
+
+
+
+
+
+
+
+
 
   const View = () => {
     const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
@@ -321,8 +328,8 @@ function Challan() {
             </ModalSubBody2>
           </ModalBody>
           <ModalImage>
-            <ReactPlayer url={imageUrl} width="85%" height="660px" />
-
+            {/* <ReactPlayer url={imageUrl} width="85%" height="660px" /> */}
+            <VideoPlayer challanInfo={modalInfo.violationId}/>
             <Images>
               <Img>
                 <img src={first} alt=" " width="100%"/>
@@ -332,8 +339,9 @@ function Challan() {
               </Img2>
             </Images>
           </ModalImage>
+         
         </ModalMain>
-        <VideoPlayer challanInfo={modalInfo.violationId}/>
+        
       </ModalWrapper>
     );
   };

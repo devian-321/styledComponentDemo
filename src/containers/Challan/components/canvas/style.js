@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0px 32px 12px;
+  /* padding: 0px 32px 12px; */
+  width: 85%;
+  height: 660px;
   .display {
-    height: 500px;
+    height: 660px;
+    width: 100%;
     background-color: #d5d8de;
     canvas {
       width: 100%;

@@ -52,53 +52,53 @@ function VideoPlayer({ challanInfo }) {
       const lineHeight = 40;
 
       // wrap the violation text
-      const wrappedText = wrapText(
-        boxCtx,
-        challanInfo.violationType,
-        Math.min(700, block[1][0] - block[0][0]) / 3.5
-      );
-      // show text inside
-      if (
-        block[0][1] < lineHeight * wrappedText.length + 40 &&
-        block[1][1] >
-          canvasRef.current.height - (lineHeight * wrappedText.length + 40)
-      ) {
-        y1Axis = block[0][1];
-        boxText = block[0][1];
-        position = lineHeight - 10;
-      }
-      // text on bottom
-      else if (block[0][1] < 100) {
-        y1Axis = block[1][1];
-        boxText = block[1][1];
-        position = lineHeight - 10;
-      }
-      // text on top
-      else {
-        y1Axis = block[0][1] - 40 * wrappedText.length;
-        boxText = block[0][1];
-        position = -(lineHeight - 10);
-      }
+    //   const wrappedText = wrapText(
+    //     boxCtx,
+    //     challanInfo.violationType,
+    //     Math.min(700, block[1][0] - block[0][0]) / 3.5
+    //   );
+    //   // show text inside
+    //   if (
+    //     block[0][1] < lineHeight * wrappedText.length + 40 &&
+    //     block[1][1] >
+    //       canvasRef.current.height - (lineHeight * wrappedText.length + 40)
+    //   ) {
+    //     y1Axis = block[0][1];
+    //     boxText = block[0][1];
+    //     position = lineHeight - 10;
+    //   }
+    //   // text on bottom
+    //   else if (block[0][1] < 100) {
+    //     y1Axis = block[1][1];
+    //     boxText = block[1][1];
+    //     position = lineHeight - 10;
+    //   }
+    //   // text on top
+    //   else {
+    //     y1Axis = block[0][1] - 40 * wrappedText.length;
+    //     boxText = block[0][1];
+    //     position = -(lineHeight - 10);
+    //   }
 
-      boxCtx.fillRect(
-        x1Axis - 4,
-        y1Axis,
-        boxWidth + 8,
-        lineHeight * wrappedText.length + 10
-      );
-      boxCtx.fillStyle = "#000000";
-      boxCtx.textAlign = "center";
-      boxCtx.textBaseline = "middle";
-      boxCtx.font = "26px inter";
+    //   boxCtx.fillRect(
+    //     x1Axis - 4,
+    //     y1Axis,
+    //     boxWidth + 8,
+    //     lineHeight * wrappedText.length + 10
+    //   );
+    //   boxCtx.fillStyle = "#000000";
+    //   boxCtx.textAlign = "center";
+    //   boxCtx.textBaseline = "middle";
+    //   boxCtx.font = "26px inter";
 
-      for (let i = 0; i < wrappedText.length; i += 1) {
-        boxCtx.fillText(
-          wrappedText[i],
-          (x1Axis * 2 + boxWidth) / 2,
-          boxText + i * position + (position > 0 ? 22 : -16)
-        );
-      }
-      boxCtx.stroke();
+    //   for (let i = 0; i < wrappedText.length; i += 1) {
+    //     boxCtx.fillText(
+    //       wrappedText[i],
+    //       (x1Axis * 2 + boxWidth) / 2,
+    //       boxText + i * position + (position > 0 ? 22 : -16)
+    //     );
+    //   }
+    //   boxCtx.stroke();
     };
   };
 
