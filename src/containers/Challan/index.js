@@ -375,13 +375,13 @@ function Challan() {
         <HeadSubContainer>
           <nav>
             <Ul>
-              <LiU>
-                <A onClick={handleUnpaidChallan} to={`./`} paidViolation={paidViolation}>
+              <LiU paidViolation={paidViolation}>
+                <A onClick={handleUnpaidChallan} to={`./`} >
                   Unpaid Challan
                 </A>
               </LiU>
-              <LiP>
-                <A onClick={handlePaidChallan} paidViolation={paidViolation}>Paid Challan</A>
+              <LiP  paidViolation={paidViolation}>
+                <A onClick={handlePaidChallan}>Paid Challan</A>
               </LiP>
             </Ul>
           </nav>
