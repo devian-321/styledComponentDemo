@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import $ from "jquery";
 
 
 export const HeadContainer = styled.div`
@@ -55,7 +56,8 @@ font-style: normal;
 font-weight: 500;
 font-size: 14px;
 line-height: 17px;
-color: #2D2D32;
+/* color: #2D2D32; */
+color: ${props => props.paidviolation ? "#2D2D32" : " #F58706"};
 list-style-type: none;
 
 `
@@ -72,19 +74,19 @@ font-weight: 600;
 font-size: 14px;
 line-height: 17px;
 /* identical to box height */
-color: #F58706;
+color: ${props => props.paidviolation ? "#F58706" : " #2D2D32"};
 list-style-type: none;
 
 `
 
 
-export const A = styled(Link)`
+export const A = styled.a`
     text-decoration: none;
-    
-/* identical to box height */
+   
 
 
-color: #2D2D32;
+
+/* color: #2D2D32;
 
 
     :link{
@@ -96,15 +98,15 @@ color: #2D2D32;
 /* identical to box height */
 
 
-    color: #2D2D32;
+    /* color: #2D2D32;
     }
     :active{
         color: #F58706;
         text-decoration: underline;
-    }
+    } */
     /* :visited{
         color: #F58706;
-    } */
+    } */ 
     
     
 

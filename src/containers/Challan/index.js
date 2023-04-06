@@ -376,12 +376,12 @@ function Challan() {
           <nav>
             <Ul>
               <LiU>
-                <A onClick={handleUnpaidChallan} to={`./`}>
+                <A onClick={handleUnpaidChallan} to={`./`} paidViolation={paidViolation}>
                   Unpaid Challan
                 </A>
               </LiU>
               <LiP>
-                <A onClick={handlePaidChallan}>Paid Challan</A>
+                <A onClick={handlePaidChallan} paidViolation={paidViolation}>Paid Challan</A>
               </LiP>
             </Ul>
           </nav>
