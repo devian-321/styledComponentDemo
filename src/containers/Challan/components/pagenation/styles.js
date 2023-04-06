@@ -30,17 +30,18 @@ font-style: normal;
 font-weight: 500;
 font-size: 13px;
 line-height: 30px;
+
+pointer-events: ${props => props.disabled ?"None":"all"};
+
+/*  */
 /* align-items: center; */
 /* left: 127px;
 top: 890px; */
 
 :active{
-    border: 1px solid #1D2D4E;
+    border: ${props => props.primary?"":"1px solid #1D2D4E"};
 }
-:hover:not(.active){
-    background-color: #ddd;
-  /* border-radius: 5px; */
-}
+border: ${props => props.primary? "1px solid #1D2D4E":""};
 
     margin: 0 4px;
 `

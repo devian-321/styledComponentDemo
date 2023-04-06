@@ -111,12 +111,16 @@ function Challan() {
         console.log(res.data.length);
         setLoader(false);
         setPayAmount(0);
+        if (currPage + 2 >= totalPages || currPage < 0) {
+          setDisableButton(true);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  // Get Previous and next pages
   const getPrevPage = () => {
     if(currPage>0){
       setDisableButton(false);
@@ -134,9 +138,17 @@ function Challan() {
     setCurrentPage(currPage + 1);
   };
 
+
+
+  //To set the data for paid Violation 
   useEffect(() => {
     setPaidViolation(paidViolation);
     setCurrentPage(currPage);
+
+    // if (currPage + 2 >= totalPages || currPage < 0) {
+    //   setDisableButton(true);
+    // }
+    
     
     if (paidViolation === true) {
       axios
@@ -182,12 +194,20 @@ function Challan() {
           console.log(totalPages);
           setLoader(false);
           setPayAmount(0);
+          if (currPage + 2 >= totalPages || currPage < 0) {
+            setDisableButton(true);
+          };
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [paidViolation, currPage]);
+
+
+  // To set back the disabled button
+
+  useEffect(()=>{setDisableButton(false)},[paidViolation])
 
 
   //Check Box 
@@ -470,8 +490,8 @@ function Challan() {
           <Button onClick={getPrevPage} >
             Prev
           </Button>
-          <PageNumber>{currPage}</PageNumber>
-          <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
+          <PageNumber primary>{currPage}</PageNumber>
+          <PageNumber onClick={getNextPage} disabled={disableButton}>{currPage + 1}</PageNumber>
           <Button onClick={getNextPage} disabled={disableButton}>
             Next
           </Button>
