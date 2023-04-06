@@ -57,7 +57,9 @@ font-weight: 500;
 font-size: 14px;
 line-height: 17px;
 /* color: #2D2D32; */
+/* text-decoration: underline; */
 color: ${props => props.paidViolation ? "#2D2D32" : " #F58706"};
+text-decoration: ${props => props.paidViolation?"none":"underline"};
 list-style-type: none;
 
 `
@@ -74,6 +76,7 @@ font-weight: 600;
 font-size: 14px;
 line-height: 17px;
 /* identical to box height */
+text-decoration: ${props => props.paidViolation?"underline":"none"};
 color: ${props => props.paidViolation ? "#F58706" : " #2D2D32"};
 list-style-type: none;
 
