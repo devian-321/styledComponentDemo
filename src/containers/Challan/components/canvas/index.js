@@ -150,13 +150,14 @@ function VideoPlayer({ challanInfo }) {
       </div>
       <div className="controls">
         <Svg onClick={rewind}>
-          <button isDisable={currentIndex === 0} />
+          <button isDisable={currentIndex === 0}>
+          Rewind</button>
         </Svg>
         <Svg onClick={() => setResume(!resume)}>
-          {resume ? <button  /> : <button />}
+          {resume===true ? <button >pause</button> : <button>play</button>}
         </Svg>
         <Svg onClick={forward}>
-          <button isDisable={currentIndex === imageData.length - 1} />
+          <button isDisable={currentIndex === imageData.length - 1}>forward</button>
         </Svg>
       </div>
     </Container>

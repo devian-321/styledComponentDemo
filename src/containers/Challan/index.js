@@ -58,7 +58,8 @@ import {
   ModalElementStat,
   ModalElementDyn,
   Images,
-  Img,Img2
+  Img,
+  Img2,
   //   ViolationType
 } from "../view/styles";
 import VideoPlayer from "./components/canvas";
@@ -68,27 +69,19 @@ function Challan() {
   const [paidViolation, setPaidViolation] = useState(false);
   const [loader, setLoader] = useState(true);
   const [payAmount, setPayAmount] = useState(0);
+  const [disableButton, setDisableButton] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   const [modalInfo, setModalInfo] = useState([]);
-  // const [show, setShow] = useState(false);
+
   const [selectedRow, setSelectedRow] = useState(null);
 
-  // const rowEvent = (row)=>{
-  //   onClick: (e,row)=>{
-  //     console.log(row);
-  //   }
-
-  // }
   const handleClose = () => setShowModal(false);
   const handleShow = (info) => {
-      setShowModal(true);
-      setModalInfo(info);
-      console.log(info);
+    setShowModal(true);
+    setModalInfo(info);
+    console.log(info);
   };
-  // const toggleTrueFalse = () => {
-  //   setShowModal(handleShow);
-  // };
 
   const url =
     "https://traffic-light-videos.s3.ap-south-1.amazonaws.com/frames/1/1/1/2556/2022/10/11/8/34/1-1-1-2556-2022-10-11-8-34-40-20171.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230120T102333Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAUOXUF53222GR23MD%2F20230120%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=dd22ad2678b73c41009a333ec1d52f31f440ae68afdd5dbba063bda0e95d60d6";
@@ -125,16 +118,26 @@ function Challan() {
   }, []);
 
   const getPrevPage = () => {
-    setCurrentPage(Math.ceil(0, currPage));
+    if(currPage>0){
+      setDisableButton(false);
+    }
+
+    setCurrentPage(Math.max(0,currPage-1));
   };
 
   const getNextPage = () => {
+    if (currPage + 2 >= totalPages || currPage < 0) {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
     setCurrentPage(currPage + 1);
   };
 
   useEffect(() => {
     setPaidViolation(paidViolation);
     setCurrentPage(currPage);
+    
     if (paidViolation === true) {
       axios
         .get(
@@ -186,6 +189,9 @@ function Challan() {
     }
   }, [paidViolation, currPage]);
 
+
+  //Check Box 
+
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
     if (name === "select_all") {
@@ -205,10 +211,16 @@ function Challan() {
       setVehicleData(tempId);
     }
   };
+
+  //  pay amount for pay buttom
+  
   useEffect(() => {
     setPayAmount(payAmount);
     console.log(payAmount);
   }, [payAmount]);
+
+
+  //toggle between paid and unpaid Challan
 
   const handlePaidChallan = () => {
     setPaidViolation(true);
@@ -217,6 +229,7 @@ function Challan() {
     setPaidViolation(false);
   };
 
+  //sum Algo for total
   const sumAmount = (tempId) => {
     var sum = 0;
     for (let i = 0; i < tempId.length; i++) {
@@ -229,22 +242,11 @@ function Challan() {
 
   // video player data
 
-
-
-
-
-
-
-
-
-
-
-
   const View = () => {
     const imageUrl = "https://www.youtube.com/watch?v=XINPVXV3XdI";
 
     return (
-      <ModalWrapper >
+      <ModalWrapper>
         <ModalMain>
           <ModalHeader>
             <ModalSubHeader>
@@ -271,7 +273,9 @@ function Challan() {
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Violation Type :</ModalElementStat>
-                <ModalElementDyn color="red">{modalInfo.violationType}</ModalElementDyn>
+                <ModalElementDyn color="red">
+                  {modalInfo.violationType}
+                </ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Licence Number:</ModalElementStat>
@@ -285,7 +289,9 @@ function Challan() {
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Date:</ModalElementStat>
-                <ModalElementDyn>{modalInfo.violationDate.slice(0, 10)}</ModalElementDyn>
+                <ModalElementDyn>
+                  {modalInfo.violationDate.slice(0, 10)}
+                </ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
                 <ModalElementStat>Time:</ModalElementStat>
@@ -318,7 +324,7 @@ function Challan() {
               <ModalBodyElement>
                 <ModalElementStat>Payment status:</ModalElementStat>
                 <ModalElementDyn color="paymentStatus">
-                  {paidViolation === true? "Paid":"Not Paid"}
+                  {paidViolation === true ? "Paid" : "Not Paid"}
                 </ModalElementDyn>
               </ModalBodyElement>
               <ModalBodyElement>
@@ -329,19 +335,17 @@ function Challan() {
           </ModalBody>
           <ModalImage>
             {/* <ReactPlayer url={imageUrl} width="85%" height="660px" /> */}
-            <VideoPlayer challanInfo={modalInfo.violationId}/>
+            <VideoPlayer challanInfo={modalInfo.violationId} />
             <Images>
               <Img>
-                <img src={first} alt=" " width="100%"/>
+                <img src={first} alt=" " width="100%" />
               </Img>
               <Img2>
-                <img src={first} alt=" "  width="100%"/>
+                <img src={first} alt=" " width="100%" />
               </Img2>
             </Images>
           </ModalImage>
-         
         </ModalMain>
-        
       </ModalWrapper>
     );
   };
@@ -447,7 +451,13 @@ function Challan() {
                 <td>{val.fineAmount}</td>
                 {paidViolation === false ? <td>{val.dueDate}</td> : <td></td>}
                 <td>
-                  <ViewButton onClick={(e)=>{handleShow(val)}}>View</ViewButton>
+                  <ViewButton
+                    onClick={(e) => {
+                      handleShow(val);
+                    }}
+                  >
+                    View
+                  </ViewButton>
                 </td>
               </tr>
             </Tbody>
@@ -457,10 +467,14 @@ function Challan() {
 
       <HeadPContainer>
         <SubContainer>
-          <Button onClick={getPrevPage}>Prev</Button>
+          <Button onClick={getPrevPage} >
+            Prev
+          </Button>
           <PageNumber>{currPage}</PageNumber>
           <PageNumber onClick={getNextPage}>{currPage + 1}</PageNumber>
-          <Button onClick={getNextPage}>Next</Button>
+          <Button onClick={getNextPage} disabled={disableButton}>
+            Next
+          </Button>
         </SubContainer>
         <div>
           <P>
