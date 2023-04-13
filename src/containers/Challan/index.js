@@ -355,7 +355,7 @@ function Challan() {
           </ModalBody>
           <ModalImage>
             {/* <ReactPlayer url={imageUrl} width="85%" height="660px" /> */}
-            <VideoPlayer challanInfo={modalInfo.violationId} />
+            <VideoPlayer challanInfo={modalInfo} />
             <Images>
               <Img>
                 <img src={first} alt=" " width="100%" />
