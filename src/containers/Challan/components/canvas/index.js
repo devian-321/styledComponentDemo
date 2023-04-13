@@ -98,13 +98,15 @@ function VideoPlayer({ challanInfo }) {
       boxCtx.textBaseline = "middle";
       boxCtx.font = "26px inter";
 
-    //   for (let i = 0; i < wrappedText.length; i += 1) {
-    //     boxCtx.fillText(
-    //       wrappedText[i],
-    //       (x1Axis * 2 + boxWidth) / 2,
-    //       boxText + i * position + (position > 0 ? 22 : -16)
-    //     );
-    //   }
+      let wrappedText = challanInfo.violationType;
+       
+      for (let i = 0; i < wrappedText.length; i += 1) {
+        boxCtx.fillText(
+          wrappedText[i],
+          (x1Axis * 2 + boxWidth) / 2,
+          boxText + i * position + (position > 0 ? 22 : -16)
+        );
+      }
       boxCtx.stroke();
     };
   };
