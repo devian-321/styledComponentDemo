@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { imageData } from "./data";
 import { Container,Svg } from "./style";
 import PropTypes from "prop-types";
+import { FiChevronsLeft as ResumeIcon,FiChevronsRight as ForwardIcon } from "react-icons/fi";
 // import {
 //   ForwardIcon,
 //   PauseIcon,
@@ -96,7 +97,7 @@ function VideoPlayer({ challanInfo }) {
       boxCtx.fillStyle = "#000000";
       boxCtx.textAlign = "center";
       boxCtx.textBaseline = "middle";
-      boxCtx.font = "26px inter";
+      boxCtx.font = "26px interExtraSmall";
 
       let wrappedText = challanInfo.violationType;
        
@@ -160,13 +161,13 @@ function VideoPlayer({ challanInfo }) {
       <div className="controls">
         <Svg onClick={rewind}>
           <button isDisable={currentIndex === 0}>
-          Rewind</button>
+          <ResumeIcon /></button>
         </Svg>
         <Svg onClick={() => setResume(!resume)}>
           {resume===true ? <button >pause</button> : <button>play</button>}
         </Svg>
         <Svg onClick={forward}>
-          <button isDisable={currentIndex === imageData.length - 1}>forward</button>
+          <button isDisable={currentIndex === imageData.length - 1}><ForwardIcon /></button>
         </Svg>
       </div>
     </Container>

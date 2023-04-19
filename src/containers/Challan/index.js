@@ -8,6 +8,7 @@ import third from "../view/images/third.jpg";
 import forth from "../view/images/forth.jpg";
 import $ from "jquery";
 import { imageData } from "./components/canvas/data";
+import {FiChevronLeft as CloseIcon ,FiX as CloseX } from "react-icons/fi";
 
 import {
   Table,
@@ -64,6 +65,7 @@ import {
 } from "../view/styles";
 import VideoPlayer from "./components/canvas";
 
+
 function Challan() {
   const [vehicleData, setVehicleData] = useState([]);
   const [paidViolation, setPaidViolation] = useState(false);
@@ -74,7 +76,6 @@ function Challan() {
   const [showModal, setShowModal] = useState(false);
   const [modalInfo, setModalInfo] = useState([]);
 
-  const [selectedRow, setSelectedRow] = useState(null);
 
   const handleClose = () => setShowModal(false);
   const handleShow = (info) => {
@@ -271,14 +272,14 @@ function Challan() {
           <ModalHeader>
             <ModalSubHeader>
               <ModalBack>
-                <button onClick={handleClose}>back</button>
+                <button onClick={handleClose}><CloseIcon /></button>
               </ModalBack>
               <ModalHeading>Challan Details</ModalHeading>
             </ModalSubHeader>
 
             <ModalSubCancel>
               <ModalCancel>
-                <button onClick={handleClose}>X</button>
+                <button onClick={handleClose}><CloseX /></button>
               </ModalCancel>
             </ModalSubCancel>
           </ModalHeader>
@@ -358,6 +359,7 @@ function Challan() {
             <VideoPlayer challanInfo={modalInfo} />
             <Images>
               <Img>
+             
                 <img src={first} alt=" " width="100%" />
               </Img>
               <Img2>
